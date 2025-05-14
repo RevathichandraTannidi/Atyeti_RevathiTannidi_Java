@@ -6,7 +6,7 @@ public class DataTypeConverter {
         try {
             return Integer.parseInt(str);
         } catch (NumberFormatException e) {
-            System.out.println("Invalid integer format: " + str);
+            System.out.println("invalid integer format: " + str);
             return null;
         }
     }
@@ -15,7 +15,7 @@ public class DataTypeConverter {
         if (value != null) {
             return value.toString();
         } else {
-            System.out.println("Null value provided.");
+            System.out.println("null value provided.");
             return null;
         }
     }
