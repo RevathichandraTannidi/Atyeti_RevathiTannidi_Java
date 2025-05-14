@@ -3,6 +3,8 @@ public class AnonymousInnerClassDemo {
             final String greet = "Hello";
             String name = "Revathi chandra";
 
+            System.out.println("rc");
+
             Runnable greeter = new Runnable() {
 
                 @Override
