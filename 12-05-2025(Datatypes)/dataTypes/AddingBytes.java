@@ -19,7 +19,7 @@ public class AddingBytes {
         Scanner sc=new Scanner(System.in);
         System.out.print("Enter a:");
         byte a=sc.nextByte();
-        System.out.println("Enter b:");
+        System.out.println("enter b:");
         byte b=sc.nextByte();
         System.out.println(" adding the bytes :"+addBytes(a,b));
 
