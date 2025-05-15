@@ -1,0 +1,28 @@
+Problem Statement:
+
+Calculate the gross salary of an employee based on the following:
+
+Input: Basic salary
+
+Salary Structure:
+
+If basic salary ≤ ₹10,000:
+
+HRA = 20% of basic
+
+DA = 80% of basic
+
+If basic salary ≤ ₹20,000:
+
+HRA = 25% of basic
+
+DA = 90% of basic
+
+If basic salary > ₹20,000:
+
+HRA = 30% of basic
+
+DA = 95% of basic
+
+
+Task: Compute and display the gross salary

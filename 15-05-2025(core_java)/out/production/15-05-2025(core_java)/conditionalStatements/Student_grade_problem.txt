@@ -1,0 +1,26 @@
+Problem Statement:
+
+Develop a program that calculates a student's grade based on their marks in five subjects: Physics, Chemistry, Biology, Mathematics, and Computer.
+Tutor Joe's
+
+Input: Marks for each subject (out of 100).
+
+Process:
+
+Calculate the total and percentage.
+
+Assign grades based on the percentage:
+
+≥ 90%: Grade A
+
+≥ 80%: Grade B
+
+≥ 70%: Grade C
+
+≥ 60%: Grade D
+
+≥ 40%: Grade E
+
+< 40%: Grade F
+
+Output: Total marks, percentage, and grade.

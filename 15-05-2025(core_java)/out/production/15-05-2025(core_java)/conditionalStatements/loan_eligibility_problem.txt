@@ -1,0 +1,39 @@
+    Problem Statement:
+
+    You are tasked with developing a Java program for a bank to assess loan eligibility for applicants based on the following criteria:
+
+    Age: Must be between 21 and 65 years (inclusive).
+
+    Employment Status: Applicant must be currently employed.
+
+    Credit Score: A minimum of 700 is required.
+
+    Annual Income: Should be at least $50,000.
+
+    Existing Debts:
+
+    If debts are less than $20,000, the applicant is eligible for premium loan options.
+
+    If debts are $20,000 or more, the applicant is eligible for standard loan options.
+    java-programming.mooc.fi
+
+    Requirements:
+
+    Prompt the user to input the following details:
+
+    Age (integer)
+
+    Employment status (boolean: true for employed, false for unemployed)
+
+    Credit score (integer)
+
+    Annual income (double)
+
+    Existing debts (double)
+
+
+    Implement nested if-else statements to evaluate the applicant's eligibility based on the criteria above.
+
+    Display appropriate messages indicating whether the loan is approved or denied, along with the reason.
+
+    If approved, specify whether the applicant qualifies for premium or standard loan options.

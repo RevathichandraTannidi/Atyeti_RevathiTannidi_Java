@@ -1,0 +1,19 @@
+Create a program to calculate the electricity bill based on the following criteria:
+
+Input: Number of units consumed.
+
+Process:
+
+Rates:
+
+First 50 units: ₹0.50/unit
+
+Next 150 units: ₹0.75/unit
+
+Next 250 units: ₹1.20/unit
+
+Above 250 units: ₹1.50/unit
+
+Add a 20% surcharge to the total bill.
+
+Output: Total bill amount including surcharge

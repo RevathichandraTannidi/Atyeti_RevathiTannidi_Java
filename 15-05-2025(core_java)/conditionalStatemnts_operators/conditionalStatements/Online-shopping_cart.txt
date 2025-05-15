@@ -1,0 +1,6 @@
+Online Shopping Cart Bill Generator
+Simulate a shopping cart system:
+- Add multiple items with quantity and price
+- Apply discounts based on total price
+- If total > 5000, apply 15% discount, else if > 2000, apply 10%
+Use loops, conditionals, and arithmetic operators.
