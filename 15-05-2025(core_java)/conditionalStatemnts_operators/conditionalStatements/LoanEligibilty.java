@@ -7,6 +7,7 @@ public class LoanEligibilty {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter your age: ");
         int age = scanner.nextInt();
+        System.out.println("\n");
         System.out.print("Are you currently employed? (true/false): ");
         boolean isEmployed = scanner.nextBoolean();
         System.out.print("Enter your credit score: ");
