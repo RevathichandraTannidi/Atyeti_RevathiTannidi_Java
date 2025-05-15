@@ -5,7 +5,7 @@ public class VaraiblesInExceptions {
             int x=10;
             System.out.println(x);
         } catch (Exception e) {
-            System.out.println("x is not working in try block");
+            System.out.println(" while x is not working in try block");
         }
         finally {
             System.out.println("finally try to print x in exception handling");

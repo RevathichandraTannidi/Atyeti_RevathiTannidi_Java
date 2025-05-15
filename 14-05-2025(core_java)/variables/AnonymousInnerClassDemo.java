@@ -3,7 +3,7 @@ public class AnonymousInnerClassDemo {
             final String greet = "Hello";
             String name = "Revathi Tannidi chandra";
 
-            System.out.println("rc");
+
 
             Runnable greeter = new Runnable() {
 
