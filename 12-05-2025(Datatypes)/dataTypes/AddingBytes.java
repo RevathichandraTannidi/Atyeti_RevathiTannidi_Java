@@ -21,7 +21,7 @@ public class AddingBytes {
         byte a=sc.nextByte();
         System.out.println("Enter b:");
         byte b=sc.nextByte();
-        System.out.println(" addinng the bytes :"+addBytes(a,b));
+        System.out.println(" adding the bytes :"+addBytes(a,b));
 
     }
 }
