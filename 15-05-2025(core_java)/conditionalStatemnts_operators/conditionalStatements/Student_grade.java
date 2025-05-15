@@ -12,9 +12,9 @@ public class Student_grade {
         int chemistry = scanner.nextInt();
         System.out.print("Enter marks for Biology: ");
         int biology = scanner.nextInt();
-        System.out.print("Enter marks for Mathematics: ");
+        System.out.print("Enter marks for Mathematics:");
         int mathematics = scanner.nextInt();
-        System.out.print("Enter marks for Computer: ");
+        System.out.print("Enter marks for Computer:");
         int computer = scanner.nextInt();
         int totalMarks = physics + chemistry + biology + mathematics + computer;
         double percentage = (totalMarks / 500.0) * 100;

@@ -9,7 +9,6 @@ public class Electric_bill
         System.out.println("enter the units of the Electric bill:");
         int units=sc.nextInt();
 
-
 double bill = 0;
  if (units <= 50) {
      bill = units * 0.50;
