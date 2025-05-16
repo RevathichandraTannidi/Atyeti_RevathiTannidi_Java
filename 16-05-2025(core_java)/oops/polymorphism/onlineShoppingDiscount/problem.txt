@@ -1,0 +1,8 @@
+Problem Statement:
+Design a base class Customer with a method calculateDiscount(). Derive classes RegularCustomer, PremiumCustomer, and EliteCustomer that override calculateDiscount() to provide different discount rates. Implement a billing system that calculates discounts for various customers using polymorphism.
+
+Objective:
+
+Utilize method overriding to implement varying discount strategies.
+
+Demonstrate runtime polymorphism in calculating customer discounts.
