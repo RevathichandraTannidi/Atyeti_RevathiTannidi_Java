@@ -1,0 +1,11 @@
+Problem:
+Create a base class Person with attributes like name, age, and gender. Create two subclasses:
+
+Student with attributes studentId and course
+Professor with attributes employeeId and department
+Override a method getDetails() in each subclass to display specific information.
+
+
+Classes: Person → Student, Professor
+Type of Inheritance: Hierarchical Inheritance
+One base class (Person) is extended by multiple subclasses.

@@ -1,0 +1,17 @@
+E-Commerce System
+Problem:
+Create a base class Product with attributes productId, name, and price.
+
+Create subclasses:
+Electronics with warrantyPeriod
+Clothing with size and material
+Override a method getProductDetails() in each subclass.
+ Demonstrate polymorphism using a list of Product references.
+
+
+
+Classes: Product → Electronics, Clothing
+Type of Inheritance: Hierarchical Inheritance
+Common in systems where different types of items share a base structure.
+
+
