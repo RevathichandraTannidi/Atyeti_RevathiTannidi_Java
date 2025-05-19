@@ -1,0 +1,17 @@
+You are designing a logistics management system for a delivery company. The system handles different types of deliveries: StandardDelivery, ExpressDelivery, and InternationalDelivery. Each delivery type has a method calculateCost() that returns the cost based on different parameters.
+
+Requirements:
+Create an abstract class Delivery with an abstract method calculateCost().
+Implement three subclasses:
+StandardDelivery: base cost is ₹50 + ₹5 per km.
+ExpressDelivery: base cost is ₹100 + ₹10 per km.
+InternationalDelivery: base cost is ₹500 + ₹20 per km + ₹100 customs fee.
+Write a main class that:
+Accepts a list of deliveries.
+Uses runtime polymorphism to calculate and print the cost for each delivery.
+
+What's Included:
+PaymentSystem.java: Demonstrates runtime polymorphism using
+an abstract class Delivery and subclasses for different delivery types.
+Trackable Interface: Shows interface-based polymorphism with trackStatus()
+implemented by each delivery type.

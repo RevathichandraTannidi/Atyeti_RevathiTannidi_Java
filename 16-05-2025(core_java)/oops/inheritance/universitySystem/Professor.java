@@ -7,7 +7,7 @@ public class Professor extends Person{
 
  Professor(String name,  int age, String gender,String employeeId,
     String department) {
-        super(name, gender, age);
+        super(name, age,gender);
         this.department=department;
         this.employeeId=employeeId;
     }
