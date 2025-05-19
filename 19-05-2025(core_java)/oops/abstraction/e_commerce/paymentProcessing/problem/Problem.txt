@@ -1,0 +1,15 @@
+ Imagine you're developing an e-commerce application that supports multiple
+ payment methods: Credit Card, PayPal, and Cryptocurrency. How would you apply
+ abstraction to handle different payment processing mechanisms?
+
+
+Implementing the Chain of Responsibility design pattern in your e-commerce application's
+ payment processing system can enhance modularity and flexibility, especially when
+handling complex validation and processing steps. This pattern allows a request to
+pass through a chain of handlers, where each handler decides either to process the
+request or pass it to the next handler in the chain
+
+Expectation: Create an abstract class or interface named PaymentProcessor with
+a method like processPayment(double amount). Each payment method would be a subclass
+or implementer that provides its specific processing logic. This approach promotes
+scalability and maintainability, allowing new payment methods to be integrated seamlessly.
