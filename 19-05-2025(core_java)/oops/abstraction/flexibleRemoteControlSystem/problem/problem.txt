@@ -1,0 +1,35 @@
+Designing a Flexible Remote Control System
+Question: You're developing a universal remote control system capable of operating various electronic devices such as TVs, Radios, and Smart Lights. Each device has its unique functionalities and control mechanisms. Your goal is to design a system that allows:
+
+Adding new devices without modifying existing remote control code.
+
+Introducing new types of remote controls (e.g., BasicRemote, AdvancedRemote) without altering device implementations.
+
+Ensuring that the remote controls can operate any device seamlessly.
+
+Tasks:
+
+How would you apply abstraction principles in Java to design this system?
+
+Which design pattern would you employ to decouple the remote controls from the devices?
+
+Provide a Java-based implementation demonstrating your design.
+
+what is bridge pattern demo
+The BridgePatternDemo is a Java application that exemplifies the Bridge Design Pattern,
+ a structural pattern aimed at decoupling an abstraction from its implementation so
+ that both can vary independently. This pattern is particularly useful when you need
+ to avoid a permanent binding between an abstraction and its implementation, allowing
+  them to evolve separately.
+
+🔧 Understanding the Bridge Design Pattern
+In the Bridge pattern, there are two primary components:
+
+Abstraction: Defines the interface for the control part of the two-class hierarchy.
+ It maintains a reference to the implementer.
+ Implementor: Defines the interface for the implementation part of the hierarchy.
+  ConcreteImplementor classes implement this interface
+
+
+By separating these components, the Bridge pattern allows for flexibility and
+scalability in code design.
