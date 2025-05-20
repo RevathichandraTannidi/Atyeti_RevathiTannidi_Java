@@ -1,0 +1,38 @@
+Objective:
+
+Develop a robust Employee Management System (EMS) that efficiently manages employee data by leveraging file handling for data persistence, collections for in-memory data management, and exception handling for graceful error management.
+
+📚 Functional Requirements
+Employee Data Management:
+
+Allow adding, updating, deleting, and viewing employee records.
+
+Each record should include: Employee ID, Name, Age, Department, and Salary.
+
+File Handling:
+
+Persist employee data to a file (e.g., CSV or JSON) to ensure data is retained between sessions.
+
+Implement functionalities to read from and write to the file during application start-up and shutdown.
+
+Collections:
+
+Utilize appropriate collection frameworks (e.g., ArrayList, HashMap) to store employee records in memory for quick access and manipulation.
+
+Implement search and sort functionalities based on different employee attributes.
+
+Exception Handling:
+
+Implement comprehensive exception handling to manage scenarios such as file not found, invalid input, or data format issues.
+
+Provide user-friendly error messages and ensure the application remains stable during exceptions.
+
+🛠️ Technical Specifications
+Programming Language: Java
+
+Data Storage: File system using CSV or JSON format
+
+Collections: ArrayList for ordered storage; HashMap for quick lookup
+
+Exception Handling: Try-catch blocks with custom exception classes where appropriate
+
