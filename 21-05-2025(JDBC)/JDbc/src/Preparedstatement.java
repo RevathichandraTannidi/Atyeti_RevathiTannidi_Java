@@ -1,13 +1,13 @@
 package src;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-public class Preparedstatement_Jdbc {
+public class Preparedstatement {
     public static void main(String[] args) throws Exception {
-        String query = "insert into employees values(?,?,?,?,?,?)";
-        Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "student", "student");
+        String query = "insert into employees values(?,?,?,?,?,?)";Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "student", "student");
 
         PreparedStatement st = myConn.prepareStatement(query);
         st.setInt(1, 19);
