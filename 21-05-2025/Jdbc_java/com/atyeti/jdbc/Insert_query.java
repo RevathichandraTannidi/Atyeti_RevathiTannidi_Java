@@ -5,10 +5,10 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class Insert_query {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception  {
         String query = "insert into employees (last_name, first_name, email, department, salary) values('Revathi', ' chandra Tannidi', 'revathi.t@atyeti.com', 'STrainne', 33000.00)";
         Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "student", "student");
-        System.out.println("Connection successful");
+        System.out.println("Connection  successful");
         Statement st = myConn.createStatement();
         //default boolean is false
         boolean rs = st.execute(query);

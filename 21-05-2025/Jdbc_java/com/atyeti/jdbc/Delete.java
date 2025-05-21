@@ -9,7 +9,7 @@ public class Delete {
     {
         String query = "delete from employees where id between 26 and 27";
         Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "student", "student");
-        System.out.println("Connection successful");
+        System.out.println("Connect ion successful");
         Statement st = myConn.createStatement();
         st.execute(query);
         System.out.println("Data deleted successfully");

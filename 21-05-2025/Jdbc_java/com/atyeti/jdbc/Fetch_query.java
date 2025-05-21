@@ -24,7 +24,7 @@ public class Fetch_query {
         }
 
         myConn.close();
-        System.out.println("Connection closed");
+        System.out.println("Connection  closed");
 
 
     }
