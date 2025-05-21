@@ -9,7 +9,7 @@ public class UpdateQuery {
         String query = "update employees set id =1  ,email='john.doe@gmail.com',department='delivery',salary=53330.0 where id =23 ";
         String sqlquery="update employees set id =14 where id =24 ";
         Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "student", "student");
-        System.out.println("Connection successful");
+        System.out.println("Connection  successful");
         Statement st = myConn.createStatement();
         st.execute(query);
         st.execute(sqlquery);
