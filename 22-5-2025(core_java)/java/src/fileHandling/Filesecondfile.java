@@ -7,10 +7,8 @@ import java.io.IOException;
 public class Filesecondfile {
     public static void main(String[] args) {
         try {
-            // Specify the file path
             File obj = new File("java/src/fileHandling/run.txt");
 
-            // Check if the file exists or create a new one
             if (obj.createNewFile()) {
                 System.out.println("New file is created: " + obj.getName());
             } else {

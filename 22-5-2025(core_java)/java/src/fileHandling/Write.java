@@ -3,7 +3,8 @@ package fileHandling;
 
 import java.io.*;
 
-public class Write{
+public class
+Write{
     public static void main(String[] args) {
         try
         {
