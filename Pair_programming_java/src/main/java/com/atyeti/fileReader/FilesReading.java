@@ -21,7 +21,7 @@ public class FilesReading {
             return;
         }
 
-        List<Thread> threads=new ArrayList<>();
+
         for (File file1 : files) {
             logger.info("Reading file: " + file.getName());
             Thread thread = new LogFileAnalyzer(file1);
@@ -29,8 +29,6 @@ public class FilesReading {
             thread.join();
 
         }
-
-
 
     }
 }
