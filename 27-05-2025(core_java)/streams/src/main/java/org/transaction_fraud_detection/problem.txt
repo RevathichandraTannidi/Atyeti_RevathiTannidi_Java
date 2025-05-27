@@ -1,0 +1,27 @@
+Problem Overview:
+You are tasked with building a fraud detection system that analyzes financial transactions using Java Streams. The system will process a JSON file containing transaction records and identify suspicious patterns based on time, location, and transaction volume.
+
+📁 Input:
+A JSON file named transactions.json containing a list of transaction records. Each record includes the following fields:
+
+transactionId (String): Unique identifier for the transaction
+userId (String): Identifier of the user who made the transaction
+amount (Double): Transaction amount
+timestamp (String, ISO 8601 format): Date and time of the transaction (e.g., "2025-05-27T14:30:00")
+location (String): City where the transaction occurred
+
+🎯 Objectives:
+✅ 1. Rapid Transaction Detection
+Identify users who made more than 3 transactions within any 5-minute window.
+
+Output the user ID and the list of transactions that occurred within that window.
+✅ 2. Top 5 High-Spending Users
+Determine the top 5 users who have the highest total transaction amount.
+
+Output the user ID and their total amount spent.
+✅ 3. Location-Based Anomaly Detection
+Detect users who made transactions in different cities within a 10-minute window.
+
+Output the user ID and the suspicious transaction pairs.
+🧪 Output:
+The program should print the results of each objective to the console in a clear and readable format.

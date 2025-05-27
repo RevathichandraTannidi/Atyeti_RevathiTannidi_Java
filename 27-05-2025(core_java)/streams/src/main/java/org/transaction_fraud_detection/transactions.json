@@ -1,0 +1,142 @@
+[
+    {
+        "transactionId": "txn1",
+        "userId": "user2",
+        "amount": 226.81,
+        "timestamp": "2025-05-27T08:41:12.549622",
+        "location": "Chicago"
+    },
+    {
+        "transactionId": "txn2",
+        "userId": "user5",
+        "amount": 481.21,
+        "timestamp": "2025-05-27T08:36:12.549651",
+        "location": "Phoenix"
+    },
+    {
+        "transactionId": "txn3",
+        "userId": "user3",
+        "amount": 322.39,
+        "timestamp": "2025-05-27T09:05:12.549662",
+        "location": "Phoenix"
+    },
+    {
+        "transactionId": "txn4",
+        "userId": "user1",
+        "amount": 456.19,
+        "timestamp": "2025-05-27T09:06:12.549669",
+        "location": "Houston"
+    },
+    {
+        "transactionId": "txn5",
+        "userId": "user3",
+        "amount": 200.62,
+        "timestamp": "2025-05-27T08:49:12.549678",
+        "location": "Chicago"
+    },
+    {
+        "transactionId": "txn6",
+        "userId": "user1",
+        "amount": 269.33,
+        "timestamp": "2025-05-27T08:39:12.549686",
+        "location": "Chicago"
+    },
+    {
+        "transactionId": "txn7",
+        "userId": "user2",
+        "amount": 381.44,
+        "timestamp": "2025-05-27T09:30:12.549694",
+        "location": "Houston"
+    },
+    {
+        "transactionId": "txn8",
+        "userId": "user3",
+        "amount": 415.86,
+        "timestamp": "2025-05-27T09:28:12.549702",
+        "location": "New York"
+    },
+    {
+        "transactionId": "txn9",
+        "userId": "user4",
+        "amount": 137.58,
+        "timestamp": "2025-05-27T09:00:12.549709",
+        "location": "Los Angeles"
+    },
+    {
+        "transactionId": "txn10",
+        "userId": "user2",
+        "amount": 138.05,
+        "timestamp": "2025-05-27T08:59:12.549714",
+        "location": "Los Angeles"
+    },
+    {
+        "transactionId": "txn11",
+        "userId": "user3",
+        "amount": 171.8,
+        "timestamp": "2025-05-27T08:55:12.549718",
+        "location": "Los Angeles"
+    },
+    {
+        "transactionId": "txn12",
+        "userId": "user4",
+        "amount": 170.66,
+        "timestamp": "2025-05-27T09:26:12.549722",
+        "location": "Houston"
+    },
+    {
+        "transactionId": "txn13",
+        "userId": "user3",
+        "amount": 281.19,
+        "timestamp": "2025-05-27T09:13:12.549726",
+        "location": "New York"
+    },
+    {
+        "transactionId": "txn14",
+        "userId": "user2",
+        "amount": 352.92,
+        "timestamp": "2025-05-27T09:01:12.549731",
+        "location": "Chicago"
+    },
+    {
+        "transactionId": "txn15",
+        "userId": "user2",
+        "amount": 365.25,
+        "timestamp": "2025-05-27T09:22:12.549734",
+        "location": "Houston"
+    },
+    {
+        "transactionId": "txn16",
+        "userId": "user1",
+        "amount": 26.72,
+        "timestamp": "2025-05-27T09:28:12.549738",
+        "location": "Phoenix"
+    },
+    {
+        "transactionId": "txn17",
+        "userId": "user3",
+        "amount": 11.42,
+        "timestamp": "2025-05-27T08:54:12.549742",
+        "location": "Los Angeles"
+    },
+    {
+        "transactionId": "txn18",
+        "userId": "user2",
+        "amount": 202.06,
+        "timestamp": "2025-05-27T09:01:12.549746",
+        "location": "Houston"
+    },
+    {
+        "transactionId": "txn19",
+        "userId": "user2",
+        "amount": 85.62,
+        "timestamp": "2025-05-27T08:59:12.549750",
+        "location": "Phoenix"
+    },
+    {
+        "transactionId": "txn20",
+        "userId": "user3",
+        "amount": 23.18,
+        "timestamp": "2025-05-27T09:14:12.549754",
+        "location": "Houston"
+    }
+]
