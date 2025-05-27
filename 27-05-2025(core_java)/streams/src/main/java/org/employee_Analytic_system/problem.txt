@@ -1,0 +1,25 @@
+problem_statement
+ here is the description:
+
+You are given a CSV file named employees.csv containing employee records.
+Each record includes the following fields:
+
+id (Integer): Unique identifier for the employee
+name (String): Name of the employee
+department (String): Department the employee belongs to
+salary (Double): Monthly salary of the employee
+joiningDate (Date in yyyy-MM-dd format): Date the employee joined the company
+Your task is to write a Java program that reads this CSV file, parses the data into Employee objects, and performs the following analytics using the Java Stream API.
+
+ Objectives:
+ 1. Highest Paid Employee by Department
+For each department, find the employee with the highest salary. Display the department name along with the employee’s name and salary.
+
+ 2. Employee Count by Year of Joining
+Group employees by the year they joined and count how many employees joined in each year. Display the year and the corresponding count.
+
+ 3. Above-Average Earners (Post-2018)
+List the names of employees who:
+
+Joined after 2018, and
+Earn more than the average salary of their respective department.
