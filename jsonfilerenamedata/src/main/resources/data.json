@@ -1,0 +1,120 @@
+{
+  "company" : "new new comp ltd",
+  "location" : {
+    "country" : "USA",
+    "address" : {
+      "zip" : "94105",
+      "street" : "123 Market St"
+    },
+    "city" : "San Francisco",
+    "state" : "California"
+  },
+  "departments" : [ {
+    "head" : "Alice Johnson",
+    "teams" : [ {
+      "members" : [ {
+        "name" : "revathi",
+        "experience" : 5
+      }, {
+        "name" : "revathi",
+        "experience" : 3
+      } ],
+      "name" : "revathi",
+      "lead" : "Tom Smith"
+    }, {
+      "members" : [ {
+        "name" : "revathi",
+        "experience" : 2
+      }, {
+        "name" : "revathi",
+        "experience" : 4
+      } ],
+      "name" : "revathi",
+      "lead" : "Samantha Lee"
+    } ],
+    "name" : "revathi"
+  }, {
+    "head" : "Robert King",
+    "teams" : [ {
+      "members" : [ {
+        "name" : "revathi",
+        "experience" : 6
+      }, {
+        "name" : "revathi",
+        "experience" : 1
+      } ],
+      "name" : "revathi",
+      "lead" : "Jill White"
+    } ],
+    "name" : "revathi"
+  } ],
+  "projects" : [ {
+    "stack" : {
+      "database" : "PostgreSQL",
+      "backend" : "Spring Boot",
+      "frontend" : "React"
+    },
+    "teamSize" : 6,
+    "name" : "evaho",
+    "id" : "P005",
+    "status" : "Active"
+  }, {
+    "stack" : {
+      "database" : "MongoDB",
+      "backend" : "Node.js",
+      "frontend" : "Angular"
+    },
+    "teamSize" : 4,
+    "name" : "evaho",
+    "id" : "P005",
+    "status" : "Completed"
+  } ],
+  "founded" : 2010,
+  "active" : true,
+  "technologies" : {
+    "cloud" : {
+      "provider" : "GCP",
+      "services" : [ "Compute Engine", "Cloud Storage", "BigQuery" ]
+    },
+    "languages" : [ "Java", "Python", "JavaScript" ],
+    "tools" : [ "Git", "Jenkins", "Docker" ]
+  },
+  "compliance" : { },
+  "feedback" : {
+    "2023" : {
+      "Q1" : 4.5,
+      "Q2" : 4.7,
+      "Q3" : 4.6,
+      "Q4" : 4.8
+    },
+    "2024" : {
+      "Q1" : 4.9
+    }
+  },
+  "partnerships" : [ {
+    "partner" : "CloudX",
+    "startYear" : 2019,
+    "active" : true
+  }, {
+    "partner" : "SecureNet",
+    "startYear" : 2021,
+    "active" : false
+  } ],
+  "announcements" : {
+    "next" : "Product launch scheduled for Q3",
+    "latest" : "Q2 earnings exceed expectations"
+  },
+  "settings" : {
+    "theme" : "dark",
+    "notifications" : {
+      "sms" : false,
+      "email" : true,
+      "push" : {
+        "enabled" : true,
+        "frequency" : "daily"
+      }
+    }
+  },
+  "country" : "New Company Inc",
+  "services" : "new value"
+}
