@@ -1,0 +1,42 @@
+ Problem: Business Event Scheduler with Constraints
+Problem Statement:
+You are managing a calendar for an international business. The company operates only on weekdays (Monday–Friday), from 9:00 AM to 5:00 PM in the India Standard Time (IST) zone. You are tasked with:
+
+✅ Scheduling meetings by assigning the earliest available slot (of 1 hour)
+✅ Skipping weekends and non-working hours
+✅ Ensuring that no two meetings overlap
+✅ Supporting queries like:
+
+List all meetings scheduled for a specific date
+
+Find the next available slot
+
+Count how many meetings are scheduled this week
+
+🗂 Required Concepts
+ZonedDateTime, ZoneId
+
+DayOfWeek
+
+LocalTime, Duration
+
+Streams for filtering
+
+TreeMap or TreeSet for sorting
+
+🧪 Input/Output Example:
+
+scheduler.schedule("Quarterly Review");
+scheduler.schedule("Client Sync");
+scheduler.schedule("Finance Audit");
+
+// Next available slot: 2025-06-04T11:00+05:30[Asia/Kolkata]
+scheduler.listEvents(LocalDate.of(2025, 6, 4));
+scheduler.countEventsThisWeek();
+ Key Challenges:
+You must skip weekends
+
+You must track time within daily bounds
+
+You must dynamically find the next working hour slot
+

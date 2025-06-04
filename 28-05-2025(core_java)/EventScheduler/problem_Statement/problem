@@ -1,0 +1,25 @@
+ Java Event Scheduler Project
+Overview
+This project is a console-based Event Scheduler that allows users to:
+
+Add events with specific dates and times.
+
+View all scheduled events.
+
+Check for upcoming events.
+
+Calculate the duration until an event.
+
+List events within a specific date range.
+
+The application leverages Java 8's java.time package, ensuring thread safety and immutability.
+
+
+🛠️ Technologies Used
+Java 8+
+
+java.time package (LocalDate, LocalTime, LocalDateTime, Duration, Period, DateTimeFormatter)
+
+Java Collections Framework
+
+
