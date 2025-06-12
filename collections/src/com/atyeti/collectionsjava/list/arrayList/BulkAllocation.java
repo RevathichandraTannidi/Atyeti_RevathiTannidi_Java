@@ -14,6 +14,7 @@ public class BulkAllocation {
         }
 ac.trimToSize();
 
+
         System.out.println("total logs :"+ac.size());
 
     }
