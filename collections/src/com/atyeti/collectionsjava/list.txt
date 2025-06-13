@@ -100,9 +100,7 @@ Your app is read-mostly, and thread safety is critical
 Vector or Stack — unless maintaining legacy code
 
 🧪 Code Comparison: ArrayList vs LinkedList Insertion
-java
-Copy
-Edit
+
 List<Integer> arrayList = new ArrayList<>();
 arrayList.add(0); // O(1)
 arrayList.add(0, 5); // O(n)
@@ -118,3 +116,14 @@ Thread-safe	❌	❌	✅	✅	✅
 Legacy	❌ Modern	❌ Modern	✅	✅	❌ Modern
 Iteration safe	❌	❌	❌	❌	✅ (no ConcurrentModEx)
 
+| Method                      | Purpose                               |
+| --------------------------- | ------------------------------------- |
+| `trimToSize()`              | Shrinks internal array to actual size |
+| `ensureCapacity(int)`       | Prevents resizing during future adds  |
+| `removeIf(Predicate)`       | Conditional deletion                  |
+| `replaceAll(UnaryOperator)` | In-place transformation               |
+| `sort(Comparator)`          | Custom sorting logic                  |
+| `retainAll(Collection)`     | Keep only matching elements           |
+| `subList(int, int)`         | Creates a backed view — risky         |
+| `forEach(Consumer)`         | Iterate with lambda                   |
+| `spliterator()`             | For parallel iteration (streams)      |

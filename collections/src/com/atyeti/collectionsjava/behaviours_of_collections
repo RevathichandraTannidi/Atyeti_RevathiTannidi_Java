@@ -68,3 +68,14 @@ E remove(int index);        // Remove element at position
 int indexOf(Object o);      // First index of an element
 int lastIndexOf(Object o);  // Last index of an element
 List<E> subList(int from, int to); // A slice of me!
+
+
+
+
+iterators
+| Iterator Type    | Supports Read | Remove | Add | Update | Forward? | Backward? | Splittable? | Use Case                                |
+| ---------------- | ------------- | ------ | --- | ------ | -------- | --------- | ----------- | --------------------------------------- |
+| **Enumeration**  | ✅            | ❌     | ❌   | ❌    | ✅     | ❌         | ❌         | Legacy collections (e.g., `Vector`)     |
+| **Iterator**     | ✅            | ✅    | ❌    | ❌    | ✅      | ❌        | ❌         | General `Collection` use, safe removals |
+| **ListIterator** | ✅            | ✅    | ✅    | ✅    | ✅      | ✅        | ❌         | `List` traversal with modifications     |
+| **Spliterator**  | ✅            | ❌     | ❌   | ❌    | ✅      | ❌        | ✅          | Parallel streams, bulk operations       |
