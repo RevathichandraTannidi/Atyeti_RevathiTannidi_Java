@@ -1,0 +1,81 @@
+package com.atyeti.healthcare.service.impl;
+
+import com.atyeti.healthcare.dto.PatientDTO;
+import com.atyeti.healthcare.exception.ResourceNotFoundException;
+import com.atyeti.healthcare.model.Patient;
+import com.atyeti.healthcare.repository.PatientRepository;
+import com.atyeti.healthcare.service.PatientService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class PatientServiceImpl implements PatientService {
+
+    private final PatientRepository patientRepository;
+
+    public PatientServiceImpl(PatientRepository patientRepository) {
+        this.patientRepository = patientRepository;
+    }
+
+    @Override
+    public PatientDTO createPatient(PatientDTO patientDTO) {
+        Patient patient = new Patient();
+        patient.setName(patientDTO.getName());
+        patient.setEmail(patientDTO.getEmail());
+        patient.setPhone(patientDTO.getPhone());
+        patient.setAddress(patient.getAddress());
+        patient.setAge(patient.getAge());
+        Patient saved = patientRepository.save(patient);
+        return mapToDTO(saved);
+    }
+
+    @Override
+    public PatientDTO getPatientById(Long id) {
+        Patient patient = patientRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Patient not found with ID: " + id));
+        return mapToDTO(patient);
+    }
+
+    @Override
+    public List<PatientDTO> getAllPatients() {
+        return patientRepository.findAll().stream()
+                .map(this::mapToDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public PatientDTO updatePatient(Long id, PatientDTO dto) {
+        Patient patient = patientRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Patient not found with ID: " + id));
+
+        patient.setName(dto.getName());
+        patient.setEmail(dto.getEmail());
+        patient.setPhone(dto.getPhone());
+        patient.setAddress(dto.getAddress());
+        patient.setAge(dto.getAge());
+
+        Patient updated = patientRepository.save(patient);
+        return mapToDTO(updated);
+    }
+
+    @Override
+    public void deletePatient(Long id) {
+        Patient patient = patientRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Patient not found with ID: " + id));
+        patientRepository.delete(patient);
+    }
+
+    // Manual mapping
+    private PatientDTO mapToDTO(Patient patient) {
+        PatientDTO dto = new PatientDTO();
+        dto.setId(patient.getId());
+        dto.setName(patient.getName());
+        dto.setEmail(patient.getEmail());
+        dto.setPhone(patient.getPhone());
+        dto.setAddress(patient.getAddress());
+        dto.setAge(patient.getAge());
+        return dto;
+    }
+}
