@@ -14,7 +14,7 @@ public class Doctor {
     private String email;
     private String specialization;
 
-    // Constructors
+
     public Doctor() {}
 
     public Doctor(String name, String email, String specialization) {
@@ -23,20 +23,37 @@ public class Doctor {
         this.specialization = specialization;
     }
 
-    // Getters and Setters
-    public Long getId() { return id; }
 
-    public void setId(Long id) { this.id = id; }
+    public Long getId()
+    {
+        return id;
+    }
 
-    public String getName() { return name; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public String getName() {
+        return name;
+    }
 
-    public String getEmail() { return email; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public void setEmail(String email) { this.email = email; }
+    public String getEmail() {
+        return email;
+    }
 
-    public String getSpecialization() { return specialization; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public void setSpecialization(String specialization) { this.specialization = specialization; }
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
 }

@@ -9,7 +9,6 @@ public class AppointmentDTO {
     private LocalDate appointmentDate;
     private String status;
 
-    // Constructors
     public AppointmentDTO() {
     }
 
@@ -21,7 +20,7 @@ public class AppointmentDTO {
         this.status = status;
     }
 
-    // Getters and Setters
+
 
     public Long getId() {
         return id;

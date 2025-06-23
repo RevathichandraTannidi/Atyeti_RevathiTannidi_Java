@@ -23,9 +23,9 @@
         private LocalDate appointmentDate;
 
         @Column(nullable = false)
-        private String status; // e.g., Scheduled, Completed, Cancelled
+        private String status;
 
-        // Constructors
+
         public Appointment() {
         }
 
@@ -36,7 +36,7 @@
             this.status = status;
         }
 
-        // Getters and Setters
+
 
         public Long getId() {
             return id;

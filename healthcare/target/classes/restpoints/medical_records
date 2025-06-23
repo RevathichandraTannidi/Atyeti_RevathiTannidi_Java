@@ -12,9 +12,6 @@ post : http://localhost:8080/api/medical-records
 1. Add a new Medical Record
 POST /api/medical-records
 
-json
-Copy
-Edit
 {
   "patientId": 2,
   "doctorId": 1,

@@ -67,9 +67,10 @@ public class PatientServiceImpl implements PatientService {
         patientRepository.delete(patient);
     }
 
-    // Manual mapping
+
     private PatientDTO mapToDTO(Patient patient) {
         PatientDTO dto = new PatientDTO();
+        //map to dto manual one
         dto.setId(patient.getId());
         dto.setName(patient.getName());
         dto.setEmail(patient.getEmail());

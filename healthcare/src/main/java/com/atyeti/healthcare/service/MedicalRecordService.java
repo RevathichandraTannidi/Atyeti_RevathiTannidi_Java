@@ -10,7 +10,6 @@ public interface MedicalRecordService {
 
     List<MedicalRecordDTO> getRecordsByPatient(Long patientId);
 
-    // New methods:
     List<MedicalRecordDTO> getAllRecords();
 
     MedicalRecordDTO getRecordById(Long id);

@@ -27,33 +27,60 @@ public class MedicalRecord {
         this.createdAt = LocalDateTime.now();
     }
 
-    // Getters and Setters
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public void setId(Long id) { this.id = id; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getDiagnosis() { return diagnosis; }
+    public String getDiagnosis() {
+        return diagnosis;
+    }
 
-    public void setDiagnosis(String diagnosis) { this.diagnosis = diagnosis; }
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+    }
 
-    public String getPrescription() { return prescription; }
+    public String getPrescription() {
+        return prescription;
+    }
 
-    public void setPrescription(String prescription) { this.prescription = prescription; }
+    public void setPrescription(String prescription) {
+        this.prescription = prescription;
+    }
 
-    public String getNotes() { return notes; }
+    public String getNotes() {
+        return notes;
+    }
 
-    public void setNotes(String notes) { this.notes = notes; }
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 
-    public Doctor getDoctor() { return doctor; }
+    public Doctor getDoctor() {
+        return doctor;
+    }
 
-    public void setDoctor(Doctor doctor) { this.doctor = doctor; }
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
 
-    public Patient getPatient() { return patient; }
+    public Patient getPatient() {
+        return patient;
+    }
 
-    public void setPatient(Patient patient) { this.patient = patient; }
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
 }
 

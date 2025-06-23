@@ -12,32 +12,59 @@ public class MedicalRecordDTO {
     private Long doctorId;
     private Long patientId;
 
-    // Getters and Setters
-    public Long getId() { return id; }
 
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getDiagnosis() { return diagnosis; }
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
 
-    public void setDiagnosis(String diagnosis) { this.diagnosis = diagnosis; }
+    public String getDiagnosis() {
+        return diagnosis;
+    }
 
-    public String getPrescription() { return prescription; }
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+    }
 
-    public void setPrescription(String prescription) { this.prescription = prescription; }
+    public String getPrescription() {
+        return prescription;
+    }
 
-    public String getNotes() { return notes; }
+    public void setPrescription(String prescription) {
+        this.prescription = prescription;
+    }
 
-    public void setNotes(String notes) { this.notes = notes; }
+    public String getNotes() {
+        return notes;
+    }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 
-    public Long getDoctorId() { return doctorId; }
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt; }
 
-    public void setDoctorId(Long doctorId) { this.doctorId = doctorId; }
+    public Long getDoctorId() {
+        return doctorId;
+    }
 
-    public Long getPatientId() { return patientId; }
+    public void setDoctorId(Long doctorId) {
+        this.doctorId = doctorId;
+    }
 
-    public void setPatientId(Long patientId) { this.patientId = patientId; }
+    public Long getPatientId() {
+        return patientId; }
+
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
+    }
 }
