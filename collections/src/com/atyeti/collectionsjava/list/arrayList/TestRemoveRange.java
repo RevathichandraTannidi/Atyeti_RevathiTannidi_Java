@@ -5,7 +5,7 @@ import java.util.List;
 
 class CustomList<E> extends ArrayList<E> {
     public void dropRange(int from, int to) {
-        super.removeRange(from, to); // its like slice
+        super.removeRange(from, to);
     }
 }
 

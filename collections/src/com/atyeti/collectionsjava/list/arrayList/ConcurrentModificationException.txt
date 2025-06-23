@@ -1,0 +1,18 @@
+It is a runtime exception.
+
+Thrown when a collection is modified structurally
+ (e.g., add, remove) while iterating, using an iterator not designed to handle concurrent modification.
+Tracked using an internal modCount in ArrayList.
+
+Internally:
+Each ArrayList has a modCount variable.
+
+Each Iterator has its own expectedModCount.
+
+If these don’t match during iteration, a ConcurrentModificationException is thrown.
+
+ How to Avoid ConcurrentModificationException
+ 1. Use Explicit Iterator with iterator.remove()
+ 2. Use removeIf() (Java 8+)
+ 3. Collect First, Then Remove
+ 4. Use CopyOnWriteArrayList for concurrent-safe modification
