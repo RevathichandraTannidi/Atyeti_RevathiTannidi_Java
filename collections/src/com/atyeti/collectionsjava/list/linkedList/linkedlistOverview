@@ -1,0 +1,112 @@
+
+LINKED LIST OVERVIEW _-
+
+Class Signature:
+Extends AbstractSequentialList<E>, implements List<E>, Deque<E>, Cloneable, Serializable
+
+Internal Structure:
+A doubly-linked list where each node holds a reference to the previous and next nodes, and the data element
+
+ Key Characteristics
+
+Permits nulls, allows duplicate elements, and maintains insertion order .
+
+Not thread-safe by default. For safe concurrent use, wrap with:
+Collections.synchronizedList(new LinkedList(...))
+
+Fail-fast iterators: Modifications during iteration cause a ConcurrentModificationException (best-effort detection)
+
+.
+Doubly-linked list: each node stores pointers to both the previous and next node, allowing bidirectional traversal. Maintains head and tail references for fast end operations
+
+-Implements List, Deque, Serializable, and Cloneable. Supports FIFO, LIFO, and
+ queue/deque patterns
+-Permits null elements, allows duplicates, and preserves insertion order
+-Not thread-safe: use Collections.synchronizedList(...) for concurrent access
+-Iterators are fail-fast, throwing ConcurrentModificationException on structural mutations during iteration
+
+ Operations & Complexity
+Adding/Removing:
+
+Fast (O(1)) at both ends using methods like addFirst, addLast, removeFirst, removeLast, push, pop.
+
+Inserting/removing by index or object: first traverse to the position (O(n)), then update links in constant time.
+
+Access & Traversal:
+
+get(int index) and set(int index, E element) take O(n) due to node traversal.
+
+size() returns number of elements in O(1).
+
+Supports full deque/queue stack operations: offer, peek, poll, push, pop, etc.
+
+Conversion & Iteration:
+
+toArray() creates a sequential array of elements.
+
+spliterator() supports stream APIs with late-binding and fail-fast behavior.
+
+$ Common Operations
+ End-based (O(1))
+ addFirst, addLast, offerFirst, offerLast, removeFirst, removeLast, peekFirst, peekLast, pollFirst, pollLast, push, pop
+
+ Position-based (O(n) traversal + O(1) update)
+ add(int index, E)
+
+ get(int index), set(int index, E)
+
+ remove(int index)
+
+ Traversal strategy optimizes by starting from whichever end is closer to the index
+
+
+
+Use LinkedList when frequent additions/removals at ends or middle outweighs slow random
+ access.
+
+Prefer ArrayList for fast random access and lower memory cost
+
+
+Summary:
+ Java’s LinkedList<E> is a robust, doubly-linked implementation of both List and Deque.
+ It excels in flexible insertion/removal patterns and supports full stack/queue
+  operations. However, it’s comparatively slower for indexed access and uses more
+   memory. Choose it when your application needs deque-like or frequent mid-list
+   modifications.
+
+
+  Linked list v Arraylist
+   ------------------------------ --------------------------------------------------
+   | Feature                     | `LinkedList`            | `ArrayList`            |
+   | --------------------------- | ----------------------- | ---------------------- |
+   | Insert/Delete at ends       | O(1)                    | O(1) amortized         |
+   | Insert/Delete in middle     | O(n) (due to traversal) | O(n) (due to shifting) |
+   | Random access (`get`/`set`) | O(n)                    | O(1)                   |
+   | Memory efficiency           | Higher (node overhead)  | Lower                  |
+    ----------------------------------------------------------------------------------
+
+    supports behaviours on the interfaces
+
+    List<E>  : behaves like a list
+    Dequeue <E> : can be used as stack or queue
+
+   -> as  A stack:
+
+    push(E e);   (add to front)
+    pop();       (remove from front)
+    peek();      ( view top element)
+
+
+   -> as a queue (FIFO)
+
+    offer(E e);  (add to end)
+    poll();       (remove from front)
+    peek();      (view front element)
+
+
+   ->  as a dequeue
+
+     addFirst(E e);
+     addLast(E e);
+     removeFirst();
+     removeLast();

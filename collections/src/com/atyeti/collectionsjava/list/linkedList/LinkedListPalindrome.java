@@ -6,8 +6,8 @@ public class LinkedListPalindrome {
 
     public static boolean isPalindrome(LinkedList<Character> list) {
         while (list.size() > 1) {
-            char first = list.pollFirst();  // Remove and get first element
-            char last = list.pollLast();    // Remove and get last element
+            char first = list.pollFirst();  // for the queue / stack Remove and get first element
+            char last = list.pollLast();    //for the queue/stack Remove and get last element
 
             if (first != last) {
                 return false;
