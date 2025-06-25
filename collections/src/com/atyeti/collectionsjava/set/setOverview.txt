@@ -1,0 +1,215 @@
+In Java, a Set is a collection that does not allow duplicate elements.
+It models the mathematical set abstraction and is part of the Java Collections Framework.
+
+Key Characteristics of Set
+No duplicates allowed.
+Unordered, unless you're using a special implementation like LinkedHashSet or TreeSet.
+Allows null (only one null element in most implementations).
+
+| Type                  | Description                                                           |
+| --------------------- | --------------------------------------------------------------------- |
+| `HashSet`             | Most commonly used. **Unordered**, uses hash table. Fast operations.  |
+| `LinkedHashSet`       | Maintains **insertion order**. Slightly slower than `HashSet`.        |
+| `TreeSet`             | **Sorted set** (natural ordering or comparator). Uses Red-Black tree. |
+| `EnumSet`             | Specialized set for use with enum types. Very efficient.              |
+| `CopyOnWriteArraySet` | Thread-safe variant for concurrency, from `java.util.concurrent`.     |
+
+ common methods in set interface:
+
+| Method               | Description                         |
+| -------------------- | ----------------------------------- |
+| `add(E e)`           | Adds element if not already present |
+| `remove(Object o)`   | Removes the element                 |
+| `contains(Object o)` | Checks if element is present        |
+| `isEmpty()`          | Returns true if set is empty        |
+| `size()`             | Returns the number of elements      |
+| `clear()`            | Removes all elements                |
+| `iterator()`         | Returns an iterator over the set    |
+
+
+iterator:
+for (String fruit : fruits) {
+    System.out.println(fruit);
+}
+ or
+
+ Iterator<String> it = fruits.iterator();
+ while (it.hasNext()) {
+     System.out.println(it.next());
+ }
+
+ When to Use Set?:
+When uniqueness is required (e.g., user IDs, product SKUs).
+When order is not important → use HashSet.
+When insertion order matters → use LinkedHashSet.
+When sorted order is needed → use TreeSet.
+
+1. HashSet
+Most used set.
+No ordering guarantee.
+Fast lookup, insertion, and removal: O(1) average.
+Backed by HashMap
+Uses hash function + chaining (or tree bin if hash collisions are high)
+Operations are O(1) average
+Handles duplicates using HashMap.put(key, dummyValue)
+
+ 2. LinkedHashSet
+Inherits from HashSet
+Maintains insertion order of elements
+No duplicates
+Allows one null element
+Internally uses a combination of:
+HashMap (for uniqueness)
+Linked List (to preserve insertion order)
+it is backed by a LinkedHashMap
+
+When you add an element:
+map.put(element, PRESENT);
+The LinkedHashMap maintains a doubly-linked list of entries in the order they were inserted
+
+3. TreeSet
+Backed by TreeMap
+Internally uses Red-Black Tree for sorting
+Maintains sorted order of elements
+Supports navigation methods like higher(), lower(), ceiling(), floor()
+
+ 4. EnumSet
+Optimized for enums.
+
+Very fast and memory-efficient.
+
+ 5. CopyOnWriteArraySet
+Thread-safe version.
+
+Expensive for frequent writes.
+
+ Set Interface Methods
+Method	Description
+add(E e)	Adds element if not already present
+remove(Object o)	Removes element
+contains(Object o)	Checks if element exists
+size()	Returns number of elements
+isEmpty()	Checks if set is empty
+clear()	Removes all elements
+iterator()	Returns Iterator<E> to iterate
+addAll(Collection c)	Adds all elements from another collection
+
+ Use-Cases of Set
+Scenario	Suitable Set
+Remove duplicates from a list	HashSet
+Maintain unique items in order	LinkedHashSet
+Store sorted unique items	TreeSet
+Handle enums as sets	EnumSet
+Thread-safe set for concurrent use	CopyOnWriteArraySet
+
+ Internal Working (Example: HashSet)
+Internally backed by a HashMap.
+
+When you do hashSet.add("Apple"), it actually does:
+
+map.put("Apple", DUMMY_OBJECT);
+ Best Practices
+Use Set when:
+
+You need no duplicates
+
+You care about fast membership checks
+
+Avoid using TreeSet for massive data if speed matters.
+
+Use Set<String> or Set<Integer> when you want to eliminate duplicate entries from user input or files.
+
+ Advanced: NavigableSet & SortedSet
+SortedSet: TreeSet implements this. Automatically keeps elements sorted.
+
+NavigableSet: TreeSet also implements this, allowing you to navigate the set (e.g., ceiling(), floor())
+
+
+Source-level internal working of HashSet or TreeSet?
+ HashSet — Internal Working
+ Summary:
+HashSet is backed by a HashMap
+
+It stores elements as keys in the map, with a constant dummy value
+
+Implements constant-time operations: add, remove, contains (on average)
+
+ Class Declaration (from source code)
+
+public class HashSet<E> extends AbstractSet<E>
+    implements Set<E>, Cloneable, java.io.Serializable {
+
+    private transient HashMap<E, Object> map;
+
+    // Dummy object used as value for all keys
+    private static final Object PRESENT = new Object();
+}
+
+advanced use cases of set
+
+| Use-Case                               | Set Type                                         | Description                                                            |
+| -------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------- |
+| Remove duplicates from a list          | `HashSet`                                        | Convert `List` to `Set` to eliminate duplicates                        |
+| Maintain order without duplicates      | `LinkedHashSet`                                  | Preserve insertion order while keeping elements unique                 |
+| Sorted auto-complete suggestions       | `TreeSet`                                        | Sorted suggestions with range queries (`headSet`, `tailSet`, `subSet`) |
+| Enum-based configuration states        | `EnumSet`                                        | Super efficient for enums, memory-friendly and fast                    |
+| Concurrent unique log aggregation      | `ConcurrentSkipListSet` or `CopyOnWriteArraySet` | Thread-safe sets for real-time processing                              |
+| Track visited nodes in graph traversal | `HashSet`                                        | Ensure nodes are visited only once                                     |
+| Deduplication in data pipelines        | `Set<String>`                                    | Useful in ETL jobs, logs, files, APIs etc.                             |
+
+Thread-Safe Set Implementations
+1. Collections.synchronizedSet()
+Wrapper around a regular set with synchronized access
+
+Set<String> syncSet = Collections.synchronizedSet(new HashSet<>());
+
+2. CopyOnWriteArraySet
+Thread-safe
+Best for read-heavy, write-light scenarios
+
+Set<String> safeSet = new CopyOnWriteArraySet<>();
+Internally uses a copy-on-write array: modifies a copy of the array during mutation
+Expensive for frequent writes
+
+ConcurrentSkipListSet
+Concurrent + sorted set (backed by skip list)
+Supports high concurrency
+
+Set<Integer> concurrentSorted = new ConcurrentSkipListSet<>();
+
+when we use which thread safe set
+
+| Scenario                           | Set Type                      |
+| ---------------------------------- | ----------------------------- |
+| Occasional writes, frequent reads  | `CopyOnWriteArraySet`         |
+| Requires sorted data + thread-safe | `ConcurrentSkipListSet`       |
+| Simple sync with any set           | `Collections.synchronizedSet` |
+
+
+
+Behavior varies because:
+
+HashSet uses hashCode(null) → handled internally
+TreeSet uses compareTo() or Comparator — can't compare null
+
+
+ Element Comparison & Equality
+
+For Set<E> to detect duplicates:
+It uses equals() (and hashCode() for HashSet-based types)
+For TreeSet, it uses compareTo() or a Comparator
+
+ That’s why you must:
+
+Properly override equals() & hashCode() for HashSet-based sets
+Properly implement Comparable or supply Comparator for TreeSet
+
+nder the hood:
+
+For objects, Java checks:
+
+equals() — logical equality
+
+hashCode() — used in hashing-based sets (HashSet, LinkedHashSet)
+
+This is not just reference-based unless you don't override equals/hashCode.

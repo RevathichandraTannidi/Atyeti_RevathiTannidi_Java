@@ -1,0 +1,12 @@
+ Mini Project: E-Commerce Product Management System
+ Real-World Use Case:
+
+You are building the backend module of an e-commerce platform. It must:
+Track unique products by SKU
+Manage recent search queries (ordered & unique)
+Prevent duplicate discount applications
+Maintain a sorted list of bestsellers
+Handle concurrency for cart item addition
+Toggle experimental features like "Flash Sale" access
+
+
