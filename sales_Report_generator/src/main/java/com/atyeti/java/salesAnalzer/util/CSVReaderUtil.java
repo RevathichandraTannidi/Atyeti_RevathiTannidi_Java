@@ -10,8 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CSVReaderUtil {
+
     public static List<SaleRecord> readSalesFromCSV(String filePath) throws DataAnalysisException {
+
         List<SaleRecord> records = new ArrayList<>();
+
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
              br.readLine();
             String line;
@@ -21,7 +24,7 @@ public class CSVReaderUtil {
                      String productId = data[0];
                      String region = data[1];
                     int unitsSold = Integer.parseInt(data[2]);
-                    double unitPrice = Double.parseDouble(data[3]);
+                     double unitPrice = Double.parseDouble(data[3]);
                     LocalDate saleDate = LocalDate.parse(data[4]);
 
                     records.add(new SaleRecord(productId, region, unitsSold, unitPrice, saleDate));
