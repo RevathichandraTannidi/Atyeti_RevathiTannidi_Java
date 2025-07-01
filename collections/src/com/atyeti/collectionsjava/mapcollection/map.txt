@@ -1,0 +1,143 @@
+In Java, the Map interface is part of the Java Collections Framework,
+ but it is not a subtype of the Collection interface.
+ Here's a breakdown of what Map is and how it differs from Collection:
+
+ What is the Map Interface?
+A Map is an object that maps keys to values. It cannot contain duplicate keys,
+ and each key can map to at most one value.
+
+Key Characteristics:
+Stores key-value pairs.
+Keys are unique.
+Values can be duplicated.
+Common implementations: HashMap, TreeMap, LinkedHashMap, Hashtable.
+
+ How is Map Different from Collection?
+Feature	Map	Collection (e.g., List, Set)
+Structure	Key-value pairs	Single elements
+Key uniqueness	Keys must be unique	Not applicable
+Value duplication	Allowed	Depends on implementation (Set disallows)
+Interface hierarchy	Not a subtype of Collection	Subtypes include List, Set, Queue
+Examples	HashMap, TreeMap, LinkedHashMap	ArrayList, HashSet, LinkedList
+
+ Why Map is Not a Collection?
+The Collection interface is designed for collections of individual elements,
+ whereas Map is designed for associating keys with values. Their purposes and
+ method sets are fundamentally different, so Java keeps them separate in the type
+ hierarchy.
+
+  difference between hashmap,linkedhashmap,tree map and concurrentHashMap
+-------------------------------------------------------------------------------|
+ Feature	|    HashMap |	LinkedHashMap |	  TreeMap 	 |  ConcurrentHashMap  |
+ -------------------------------------------------------------------------      |
+ Order	     |   No	     |Insertion order | Sorted order | No                   |
+ Null Keys   |   1       | 	1 allowed	  | Not allowed	 |  Not allowed         |
+ Null Values |  Allowed  |	Allowed       |Allowed	     |  Not allowed
+ Thread-safe |   No	     |   No	          |  No	         | Yes
+ Performance | 	Fastest  |Slightlyslower  | Slower(log n)| High concurrency
+
+
+ characteristics of a HashMap in Java:
+
+  1. Internal Structure
+ HashMap is backed by an array of buckets (also called bins).
+ Each bucket is a linked list (or a balanced tree in Java 8+ if the list gets too long).
+ Each entry in the map is stored as a Map.Entry<K, V> object.
+ The position of each key-value pair is determined by hashing the key.
+
+  2. Initial Capacity
+ The initial capacity is the number of buckets in the hash table.
+ Default initial capacity is 16.
+ You can specify it using:
+
+  3. Load Factor
+ The load factor is a measure of how full the map can get before it resizes.
+ Default load factor is 0.75.
+ Formula:
+ Threshold =Capacity * Load Factor
+ Threshold=Capacity×Load Factor
+ When the number of entries exceeds the threshold, the map resizes (doubles the capacity).
+
+  4. Hash Collision Handling
+ A hash collision occurs when two keys hash to the same bucket index.
+
+ Java handles collisions using:
+ Chaining: Multiple entries in the same bucket are stored in a linked list.
+ Treeification (Java 8+): If a bucket contains more than 8 entries and the total capacity is at least 64, the list is converted into a balanced tree (like a red-black tree) for faster lookup.
+
+  Summary
+ ----------------------------------------------------------------------
+ Feature	            |    Description
+ -----------------------------------------------------------------------
+ Internal Structure	    |  Array of buckets with linked lists or trees
+ Default Capacity	    |    16
+ Default Load Factor    |	0.75
+ Resizing               |	Doubles capacity when threshold is exceeded
+ Collision Handling	    |    Chaining + Treeification (Java 8+)
+ Null Keys/Values       |	Allows one null key, multiple null values
+ ----------------------------------------------------------------------
+
+ What happens when two keys have the same hashCode?
+
+ When two keys have the same hashCode() in a HashMap, a hash collision occurs. Here's
+ what happens step by step:
+
+  1. Hash Code Calculation
+ Each key's hashCode() is computed, and then a hash function is applied to determine
+  the bucket index:
+int hash = hash(key.hashCode());
+int index = (n - 1) & hash; // where n is the array length
+
+
+  2. Collision Detected
+ If two keys produce the same bucket index, the new entry is added to the same bucket.
+
+  3. Collision Handling
+ Java handles this using:
+
+ a. Chaining (Linked List)
+ The new entry is added to the end of the linked list in that bucket.
+ During retrieval, the list is traversed and keys are compared using .equals().
+ b. Treeification (Java 8+)
+ If the number of entries in a bucket exceeds 8, and the total number of buckets is
+ at least 64, the linked list is converted into a balanced tree (like a red-black tree).
+ This improves lookup time from O(n) to O(log n) in that bucket.
+
+  4. Key Comparison
+ Even if two keys have the same hash code, they are considered distinct if:
+  !key1.equals(key2)
+
+
+hash map vs hash table
+---------------------------------------------------------------------------------------|
+Feature	        ``  |  HashMap	                         | Hashtable                   |
+---------------------------------------------------------------------------------------|
+Thread-safe	        |    No	                             |Yes
+Performance     	|   Faster                           |Slower
+Null keys/values	|   Allowed 	                     |Not allowed
+Introduced in	    |  Java 1.2	                         |Java 1.0
+Part of Collections	|   Yes	                             | No
+Iterator type	    |   Fail-fast	                     |Enumeration (fail-safe)
+Behavior	        |Throws ConcurentModificatinException|Does not throw, but may
+                    |  if modified during iteration	     |behave unpredictably
+-----------------------------------------------------------------------------------------
+
+HashMap is faster and more modern but not thread-safe.
+Hashtable is thread-safe but slower and considered legacy.
+HashMap allows null keys and values, while Hashtable does not.
+
+
+custom objects
+ you can use a custom object as a key in a Java Map (like HashMap, TreeMap, etc.), but you must take certain precautions to ensure it behaves correctly.
+ Precautions When Using Custom Objects as Keys
+Override hashCode():
+
+Ensures that keys are distributed properly across buckets.
+Must be consistent: if two objects are equal, they must have the same hash code.
+Override equals():
+
+Ensures logical equality between keys.
+Must be consistent with hashCode().
+Make the class immutable (recommended):
+
+Avoid changing fields used in hashCode() or equals() after insertion into the map.
