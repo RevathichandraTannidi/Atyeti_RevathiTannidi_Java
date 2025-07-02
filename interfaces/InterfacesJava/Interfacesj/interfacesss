@@ -1,0 +1,82 @@
+An interface is a keyword in java which is similar to a class.
+Up to JDK 1.7 an interface contains only abstract method that means there is a
+guarantee that inside an interface we don't have concrete or general or instance
+methods.
+From java 8 onwards we have a facility to write default and static methods.
+By using interface we can achieve 100% abstraction concept because it contains only
+abstract methods.
+In order to implement the member of an interface, it has provided implements keyword.
+All the methods declared inside an interface is by default public and abstract so at the
+time of overriding we should apply public access modifier to sub class method.
+All the variables declared inside an interface is by default public, static and final.
+We should override all the abstract methods of interface to the sub class otherwise the
+sub class will become as an abstract class hence object can't be created.
+We can't create an object for interface, but reference can be created.
+By using interface we can achieve multiple inheritance in java.
+We can achieve loose coupling using interface.
+Note :- inside an interface we can't declare any blocks (instance, static), instance
+variables (No properties) as well as we can't write constructor inside an interface.
+
+
+
+
+Evolution of Java Interfaces
+Java <7: Interfaces could only declare public abstract methods and public static final fields
+Java 8: Introduced default and static methods:
+Default methods provide implementations, enabling backward compatibility and enabling behavioral multiple inheritance
+Static methods act as utility functions scoped to the interface, not inherited by implementers
+Java 9+: Added private (and private static) methods in interfaces, allowing encapsulation and shared logic within interfaces without exposing to implementors
+
+.
+What is static method inside an interface?
+------------------------------------------
+We can define static method inside an interface from java 1.8 onwards.
+static method is only available inside the interface where it is defined that means we
+cannot invoke static method from the implementer classes.
+It is used to provide common functionality which we can apply/invoke from any ELC
+class.
+
+Interface Static Method:
+------------------------
+ a) Accessible using the interface name.
+ b) Cannot be overridden by implementing classes.
+ c) Can be called using the interface name only.
+Class Static Method:
+--------------------
+ a) Accessible using the class name.
+ b) Can be hidden (not overridden) in subclasses by redeclaring a static method with
+the same signature.
+ c) Can be called using the super class, sub class name as well as sub class object
+
+ interfaces
+ --------------
+
+ Methods are by default public abstract; fields are public static final
+  No constructors, cannot be instantiated directly
+
+  Why Use Interfaces?
+  Abstraction: Defines what needs to be done, not how
+  Multiple inheritance of behavior: Classes can implement multiple interfaces
+  Loose coupling: Code depends on behavior (interface), not implementation
+  contract enforcement: Compiler ensures all specified methods are implemented
+
+  Special Interface Types
+  Functional Interface: Exactly one abstract method (e.g., Runnable); ideal for lambdas
+  Marker Interface: No methods, used to tag classes (e.g., Serializable).
+  Nested Interfaces: Interfaces within classes/interfaces, useful for logical grouping
+
+--------------------------------------------------------------------------------------------------------------------------------
+|Type	              | Key Feature	                          |  Use Case Example                | use case                     |
+-------------------------------------------------------------------------------------------------|------------------------------|
+Normal Interface	  |Abstract methods (plus default/static) |	  Vehicle, Shape                 |  Define behavior contracts   |
+Functional Interface  |	One abstract method	                  |  Runnable, Callable, Comparator  |Lambda expressions, callbacks |
+Marker Interface	  | No methods, just a tag	              | Serializable, Cloneable          | Tagging for special behavior |
+Nested Interface	  | Defined inside a class or interface	  |  Button.OnClickListener          | Scoped or related behavior   |
+Private Interface	  | Private nested interface	          | Internal helper contracts        | 	Internal-only contracts     |
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
