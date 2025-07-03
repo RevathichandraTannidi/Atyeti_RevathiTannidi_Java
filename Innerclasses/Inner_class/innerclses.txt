@@ -1,0 +1,49 @@
+In Java, inner classes are classes defined within another class. They are used to
+logically group classes that are only used in one place, increase encapsulation,
+and can lead to more readable and maintainable code.
+
+
+Types of Inner Classes in Java
+-------------------------------
+There are four types of inner classes in Java:
+
+Non-static nested class (Regular Inner Class)
+Static nested class
+Local inner class (Defined inside a method)
+Anonymous inner class
+
+    Type                        description
+Regular Inner Class         Non-static class inside another class
+Static Nested Class         Static class inside another class
+Local Inner Class           Defined inside a method or block
+Anonymous Inner Class       No name; used to instantiate an interface/class on the fly
+
+1. Regular Inner Class (Non-Static Nested Class)
+
+Key Features:
+Has access to all members of the outer class (including private ones).
+Must be instantiated using an instance of the outer class.
+Each inner class instance is associated with an outer class instance.
+
+2. static nested class
+
+Key Features:
+Behaves like a top-level class but is nested for packaging purposes.
+Can only access static members of the outer class.
+Does not require an instance of the outer class.
+
+3.local inner classes
+Defined within a method/block and is accessible only inside that scope.
+
+Key Features:
+Can access local variables of the method only if they are final or effectively final .
+Cannot have access modifiers (private, public, etc.).
+Very useful for logic that should not escape its scope.
+
+ 4. Anonymous Inner Class
+Used to create a one-time-use class without a name
+
+Key Features:
+Often used with listeners, threads, or callbacks.
+Closures before Java 8 (sort of).
+Cannot define constructors (except for instance initializers).

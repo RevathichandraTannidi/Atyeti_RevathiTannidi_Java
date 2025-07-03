@@ -75,8 +75,112 @@ Nested Interface	  | Defined inside a class or interface	  |  Button.OnClickList
 Private Interface	  | Private nested interface	          | Internal helper contracts        | 	Internal-only contracts     |
 --------------------------------------------------------------------------------------------------------------------------------
 
+Types of Interfaces
+--------------------------
+Normal Interface
+
+Declares a set of methods (abstract, default, static) for classes to implement
+
+Marker Interface
+
+An empty interface used to mark classes with metadata (e.g., Serializable, Cloneable, Remote)
+
+Functional Interface
+
+Contains exactly one abstract method, enabling lambda expressions and method references
+
+Java built-ins: Runnable, Comparable, and those in java.util.function like Predicate, Consumer, Function, Supplier
+
+Nested Interface
+
+Defined within a class or another interface
+
+interface A
+{
+interface B
+{ …
+}
+ }
 
 
+Sub-interface / Multiple-Inheritance Interface
+
+An interface can extend multiple interfaces, combining contracts (interface A extends B, C { })
+
+ Modern Interface Features
+Default Methods
+Provide implementation in the interface. Useful to evolve APIs without breaking existing code
+
+Static Methods
+Interface-level utilities, callable directly by the interface name
+
+Private & Private Static Methods (Java 9+)
+Encapsulate shared logic used by default/static methods within the interface .
+
+Generic Interfaces
+Parameterized types to support type-safe abstractions (interface Converter<T, R> { R convert(T in); }) .
+
+Advanced/Unknown Concepts
+Service Provider Interface (SPI)
+A way to design pluggable frameworks. The interface defines extensibility points and external modules implement these and are loaded via ServiceLoader .
+
+Fluent Interface
+A style where method chaining creates a readable, “DSL‑like” API (e.g., builder.setX(1).setY(2).build()) .
+
+Adapter Pattern via Interfaces
+Use interfaces to adapt incompatible APIs without changing them, often with “wrapper” classes
+
+Marker Interface Pattern
+Using marker interfaces for runtime behavior checks. Before annotations, this was the main metadata method
+
+----------------------------------------------------------------------------------------------------------
+| Method Type        | Java Version | Visibility | Purpose                                               |
+| ------------------ | ------------ | ---------- | ----------------------------------------------------- |
+| Abstract           | All          | public     | Define contract methods to implement                  |
+| Default            | 8+           | public     | Provide optional shared behavior                      |
+| Static             | 8+           | public     | Interface-level utilities                             |
+| Private (instance) | 9+           | private    | Helpers for default methods to reuse code             |
+| Private (static)   | 9+           | private    | Utilities for default/static methods within interface |
+----------------------------------------------------------------------------------------------------------
+
+Types of Interface Methods
+
+a. Abstract methods
+Declared without a body; implementing classes must override them (pre-Java 8 and still core). All are implicitly public abstract
+interface Animal {
+    void sound();  // abstract
+}
+
+
+b. Default methods (Java 8+)
+
+Provide a default implementation directly in the interface (default keyword)
+
+default void breathe() {
+    System.out.println("Inhale... Exhale...");
+}
+
+c. Static methods (Java 8+)
+
+Utility methods callable via the interface name, not via instance
+static Animal getDefault() {
+    return new Dog();
+}
+
+d. Private methods (Java 9+)
+
+Only accessible inside that interface, used to share code between default/static methods
+private void log(String msg) {
+    System.out.println("LOG: " + msg);
+}
+
+e. Private static methods (Java 9+)
+
+Similar to private, but static—used by static or default code
+
+private static int add(int a, int b) {
+    return a + b;
+}
 
 
 

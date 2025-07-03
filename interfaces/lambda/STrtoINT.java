@@ -1,6 +1,4 @@
-package lambda;
 
-import java.sql.SQLOutput;
 import java.util.function.Function;
 
 public class STrtoINT {
