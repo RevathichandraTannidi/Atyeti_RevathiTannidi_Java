@@ -1,0 +1,175 @@
+ 1. What is a Thread?
+A thread is a lightweight subprocess—an independent path of execution within a program.
+A Java application starts with a single main thread. With threads, you can perform tasks
+ concurrently: one thread handles long-running operations while others keep the UI
+ responsive or run parallel jobs
+
+2. Creating Threads
+Two primary ways:
+
+Extend Thread
+
+class MyThread extends Thread {
+  public void run() {
+    System.out.println("Thread logic here");
+  }
+}
+
+// Start with:
+new MyThread().start();
+Implement Runnable (preferred)
+
+class MyTask implements Runnable {
+  public void run() { /*...*/ }
+}
+Thread t = new Thread(new MyTask());
+t.start();
+Both begin execution by calling start(), which uses run() as the entry point .
+
+3. Thread Lifecycle
+Threads go through states:
+
+New → created
+
+Runnable → start() called
+
+Running → executing run()
+
+Blocked/Waiting → sleeping, joining, waiting
+
+Terminated → run() completes
+
+4. Concurrency Hazards
+When threads share data, issues like:
+
+Race conditions: e.g., two threads incrementing a counter gives unpredictable results
+
+Deadlock: threads waiting on each other’s locks .
+
+Starvation/Live lock: neglect or over-activity preventing progress .
+
+5. Synchronization & Safety
+To avoid data corruption:
+
+Use the synchronized keyword or explicit locks (ReentrantLock)
+
+Use volatile for safe visibility of variables across threads
+
+Use concurrent classes (java.util.concurrent) like AtomicInteger, ConcurrentLinkedQueue
+
+
+6. Higher-Level Constructs
+Instead of manually managing threads:
+
+Executors / Thread pools (ExecutorService) manage reusable threads
+
+Futures, CountDownLatch, Semaphore, etc., for structured coordination
+
+CompletableFuture for non-blocking async workflows
+
+
+
+| Concept                  | Description                           |
+| ------------------------ | ------------------------------------- |
+| `Thread` / `Runnable`    | Create and start threads              |
+| `synchronized` / Locking | Protect shared data                   |
+| `volatile`               | Ensure visibility across threads      |
+| `ExecutorService`        | Manage pools and tasks                |
+| `java.util.concurrent`   | Thread-safe data structures & tools   |
+| `Atomic*`, `Concurrent*` | Lock-free data for safety/performance |
+
+
+1. Thread Lifecycle & States
+
+| State              | Description                                                               |
+| ------------------ | ------------------------------------------------------------------------  |
+| **NEW**            | Thread created via `new Thread(...)`, not yet started                     |
+| **RUNNABLE**       | After `start()`, thread is ready or running but CPU depends on scheduler  |
+| **BLOCKED**        | Waiting to acquire a monitor lock (e.g. inside synchronized)              |
+| **WAITING**        | Indefinite wait via `wait()`, `join()`, or `LockSupport.park()`           |
+| **TIMED\_WAITING** | Waiting with timeout via `sleep()`, `wait(timeout)`, `join(timeout)`      |
+| **TERMINATED**     | Completed execution or exited due to exception                            |
+-------------------------------------------------------------------------------------------------
+
+ Concurrency Concerns & Synchronization
+Shared-memory concurrency can lead to:
+
+Race conditions when threads access shared variables without coordination
+
+Deadlocks from improper locking
+
+Memory consistency issues due to caching
+
+Java provides:
+
+synchronized blocks & methods
+
+wait()/notify() for inter-thread communication
+These ensure one-at-a-time access and signaling
+
+
+Blocking & Coordination
+sleep(long millis) – Temporarily pauses the current thread; static method
+yield() – Hints to the scheduler to allow other threads to run; static
+interrupt() – Signals interruption; combined with blocking operations, it triggers InterruptedException
+interrupted() / isInterrupted() – Check if a thread has been interrupted; static vs instance behavior
+
+Thread Metadata & Utilities
+currentThread() – Static method to obtain the current Thread instance
+
+activeCount(), dumpStack(), enumerate(...) – Useful for debugging & thread inspection
+
+getStackTrace(), getAllStackTraces() – Capture stack traces of one or all living threads
+
+ Thread Control & Error Handling
+setDaemon(boolean) / isDaemon() – Designate threads as daemon (background) or user threads
+
+setUncaughtExceptionHandler(...), plus a default handler – Provide a hook to catch unhandled exceptions in threads
+
+
+
+volatile Keyword – What It Provides
+Visibility guarantees: Volatile writes are immediately visible to other threads—no caching delays.
+
+Ordering guarantees: Volatile reads and writes establish memory barriers: writes before the volatile write cannot move past it, and reads after a volatile read cannot move before it
+
+Atomicity for primitives: Reads/writes of volatile primitives are atomic (long, double included)
+
+
+However, volatile does not guarantee atomicity of compound actions
+ like count++—use synchronization or atomics for that
+
+ Synchronization (synchronized, Locks)
+Synchronization ensures both mutual exclusion and visibility:
+
+Releasing a lock flushes writes to main memory.
+
+Acquiring a lock invalidates the thread’s cache, refreshing shared data
+
+
+ Final Fields
+Properly initialized final fields offer publication guarantees: once an object's constructor completes, its final fields are visible to all threads without synchronization
+
+What Happens Without Happens-Before?
+Stale reads: Threads can indefinitely cache old values (e.g., non-volatile loop conditions) .
+
+Surprising behavior: Code reorderings can lead to inconsistent reads (e.g., reading flag before x is updated) .
+
+Data races arise when operations lack ordering, leading to unpredictable behaviors.
+
+ Best Practices
+Use volatile for simple flags or status where atomicity isn’t needed.
+
+Use synchronized, Locks, or volatile + atomic operations for compound or critical updates.
+
+Use Executors, proper thread start/join sequences, and synchronization to establish safe communication between threads.
+
+
+----------------------------------------------------------------------------------------------------
+| Mechanism              | Visibility            | Ordering                      | Atomicity         |
+| ---------------------- | --------------------- | ----------------------------- | ----------------- |
+| **volatile**           |  Immediate            |  Acquire/Release              |  Primitive types |
+| **synchronized/Locks** |  Flush/invalidate     | Enforced via monitor          |  Entire block    |
+| **final fields**       |  At construction end  | Set before constructor exit   |  Immutable       |
+| **No sync**            |  Not guaranteed       |  Reorder allowed              |  Unsafe          |
+
