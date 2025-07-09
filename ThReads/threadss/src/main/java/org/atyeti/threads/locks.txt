@@ -1,0 +1,114 @@
+What is a lock?
+A mechanism ensuring only one thread modifies or reads a shared resource at a time. A thread must acquire a lock before entering a critical section, and release it afterward
+
+Types of locks:
+
+Mutex / Monitor: Basic exclusive lock.
+
+ReentrantLock in Java: Allows the same thread to acquire it multiple times
+
+Read/Write locks: Readers can run concurrently; writers are exclusive .
+
+Spinlocks: Threads loop (spin) until lock is free—ideal for short tasks, but wasteful otherwise .
+
+Key issues:
+
+Race conditions occur without proper coordination.
+
+Deadlocks: occur when threads lock and wait cyclically (A → B → A)
+
+Solutions include lock ordering or coarse-grained locking
+
+
+
+ 2. Database Locks & Concurrency Control
+a) Lock-Based (Pessimistic) Concurrency
+Shared (S) locks: allow multiple readers but block writes.
+
+Exclusive (X) locks: allow one writer; block readers and writers
+
+Intent locks (IS, IX, SIX): signal hierarchical lock intent at pages/tables
+
+
+Deadlocks can occur when multiple transactions wait on each other’s locks; databases detect and abort one transaction
+
+
+b) Multi-Version Concurrency Control (MVCC)
+Stores multiple versions of data, so readers see a consistent snapshot without blocking writers
+
+
+Writers append new versions; old ones are garbage-collected (e.g., VACUUM in PostgreSQL) .
+
+Combines snapshot isolation and optimistic locking, helping reduce contention and deadlocks
+
+ 3. Locks vs. Latches
+Locks: Application-level, may block and use queuing; support shared/exclusive modes
+
+
+Latches: Light-weight, often single-CPU-cycle,
+used internally (e.g., buffer pools) with minimal overhead
+
+
+
+synchronized locks:
+
+
+1. synchronized (Intrinsic Locks)
+Usage: Simply declare a method synchronized, or wrap a block with synchronized(obj) { ... }.
+Reentrant: A thread can reacquire the same lock multiple times without deadlock
+Automatic management: JVM handles lock acquisition and release.
+
+Limitations:
+
+No support for fairness (threads not queued in order)
+Cannot interrupt a thread waiting on a lock.
+No timeout for lock attempts.
+
+usage:
+synchronized: Use for simple critical sections where performance and advanced
+ features aren't a concern.
+ Implementation: JVM uses a Mark Word in the object header. In uncontended cases,
+ it relies on biased and lightweight locking via CAS operations; when contention arises,
+  it escalates to heavyweight native monitors
+
+ No fairness guarantee, and no way to interrupt or timeout waiting threads.
+  Behavior under contention
+ As contention increases, synchronized blocks may inflate to heavyweight locks,
+ causing more overhead and queuing delays
+
+ 2. ReentrantLock (java.util.concurrent)
+ Built on AQS (AbstractQueuedSynchronizer) using volatile fields and CAS
+
+ Fairness: Can be constructed in fair mode (new ReentrantLock(true)), enforcing queue
+ order, or default to high-throughput non-fair behavior
+
+ Interruptible: Supports lockInterruptibly() and timed tryLock()—useful for avoiding
+ deadlock or managing timeouts
+
+ Multiple condition variables (via Condition): Enables fine-grained wait/signal
+  semantics versus the single monitor queue in synchronized
+Advantages over synchronized:
+
+Fairness: Can be fair (FIFO), reducing starvation
+Interruptibility: Supports lockInterruptibly() to avoid waiting forever.
+
+Try-lock: Offers non-blocking tryLock() and timed tryLock(timeout, unit)
+Condition objects: Can create multiple Conditions per lock, unlike synchronized
+
+Drawbacks:
+More boilerplate (explicit unlock in finally).
+Risk of forgetting to unlock, leading to deadlock
+
+ReentrantLock: Use when you need:
+----------------------------------
+Fair lock ordering.
+Support for interruption or timed lock attempts.
+Multiple condition queues
+
+3. ReadWriteLock / ReentrantReadWriteLock
+Ideal when reads vastly outnumber writes.
+Write locks block readers; read locks block writers
+Supports fairness policies to manage reader/writer preference
+
+ReentrantReadWriteLock: Best if your data structure is frequently read and rarely written.
+
