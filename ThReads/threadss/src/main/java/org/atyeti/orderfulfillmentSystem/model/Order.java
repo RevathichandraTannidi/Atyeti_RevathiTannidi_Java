@@ -58,9 +58,14 @@ public class Order {
     }
 }
 
-//Problem Statement:
-//Simulate a Bank Transaction Processing System that:
-//Accepts multiple bank transactions concurrently (using threads).
-//Uses collections to store and analyze transactions.
-//Prevents race conditions using synchronization.
-//Supports analytics like top customers, total debit/credit, and duplicate detection.
+//Real-Time Order Fulfillment System
+//Purpose:
+//Simulate a warehouse/order fulfillment system where:
+//
+//Multiple orders arrive concurrently from customers (via threads),
+//
+//Items are packed and shipped from a shared inventory,
+//
+//Data is tracked using Java Collections, and
+//
+//Thread safety is ensured to avoid data corruption.
