@@ -1,26 +1,40 @@
 package org.atyeti.orderfulfillmentSystem;
 
+
+
+import org.atyeti.orderfulfillmentSystem.model.Order;
 import org.atyeti.orderfulfillmentSystem.service.InventoryManager;
+import org.atyeti.orderfulfillmentSystem.service.OrderCsv;
+import org.atyeti.orderfulfillmentSystem.service.OrderReader;
 import org.atyeti.orderfulfillmentSystem.service.OrderService;
 import org.atyeti.orderfulfillmentSystem.threads.OrderWorker;
 
-public class OrderfullFill{
+import java.util.List;
 
-        public static void main(String[] args) throws InterruptedException {
-            InventoryManager inventory = new InventoryManager();
-            OrderService orderService = new OrderService();
+public class OrderfullFill {
+    public static void main(String[] args) throws InterruptedException {
+        OrderReader reader = new OrderReader();
+        List<Order> allOrders = reader.readOrdersFromCSV("C:\\Users\\RevathiTannidi\\OneDrive - Atyeti Inc\\Desktop\\Atyeti_RevathiTannidi_Java\\ThReads\\threadss\\src\\main\\java\\org\\atyeti\\orderfulfillmentSystem\\csvfiles\\input_orders.csv");
+         InventoryManager inventory = new InventoryManager();
+        OrderService orderService = new OrderService();
+         OrderCsv logger = new OrderCsv();
 
-            Thread t1 = new Thread(new OrderWorker("C101", inventory, orderService));
-            Thread t2 = new Thread(new OrderWorker("C102", inventory, orderService));
-            Thread t3 = new Thread(new OrderWorker("C103", inventory, orderService));
+         int batchSize = allOrders.size() / 3;
+        List<Order> batch1 = allOrders.subList(0, batchSize);
+         List<Order> batch2 = allOrders.subList(batchSize, 2 * batchSize);
+        List<Order> batch3 = allOrders.subList(2 * batchSize, allOrders.size());
 
-            t1.start(); t2.start(); t3.start();
-            t1.join(); t2.join(); t3.join();
+        Thread t1 = new Thread(new OrderWorker(batch1, inventory, orderService, logger));
+         Thread t2 = new Thread(new OrderWorker(batch2, inventory, orderService, logger));
+        Thread t3 = new Thread(new OrderWorker(batch3, inventory, orderService, logger));
 
-            orderService.printSummary();
+        t1.start();
+        t2.start();
+        t3.start();
+        t1.join();
+        t2.join();
+        t3.join();
 
-            System.out.println("\n Final Inventory: " + inventory.getInventory());
-        }
+        System.out.println("\n Final Inventory: " + inventory.getInventory());
     }
-
-
+}

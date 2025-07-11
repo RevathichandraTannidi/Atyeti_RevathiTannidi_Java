@@ -2,40 +2,51 @@ package org.atyeti.orderfulfillmentSystem.threads;
 
 import org.atyeti.orderfulfillmentSystem.model.Order;
 import org.atyeti.orderfulfillmentSystem.service.InventoryManager;
+import org.atyeti.orderfulfillmentSystem.service.OrderCsv;
 import org.atyeti.orderfulfillmentSystem.service.OrderService;
 
-import java.util.UUID;
+import java.util.List;
+
 
 public class OrderWorker implements Runnable {
-    private final String customerId;
+    private final List<Order> ordersToProcess;
     private final InventoryManager inventory;
     private final OrderService orderService;
+    private final OrderCsv logger;
 
-    public OrderWorker(String customerId, InventoryManager inventory, OrderService orderService) {
-        this.customerId = customerId;
+    public OrderWorker(List<Order> orders, InventoryManager inventory, OrderService orderService, OrderCsv logger) {
+        this.ordersToProcess = orders;
         this.inventory = inventory;
         this.orderService = orderService;
+        this.logger = logger;
     }
+
 
     @Override
     public void run() {
-        String[] items = {"Laptop", "Phone", "Monitor"};
-        for (int i = 0; i < 3; i++) {
-            String item = items[(int) (Math.random() * items.length)];
-            int qty = 1 + (int) (Math.random() * 3);
-            Order order = new Order(UUID.randomUUID().toString(), customerId, item, qty);
+        for (Order order : ordersToProcess) {
+            if ("REJECT".equalsIgnoreCase(order.getStatusHint())) {
+                orderService.logRejectedOrder(order);
+                logger.logRejectedOrder(order);
+                continue;
+            }
 
-            if (inventory.fulfillOrder(item, qty)) {
-                orderService.FulfilledOrder(order);
+            boolean fulfilled = inventory.fulfillOrder(order.getItemName(), order.getQuantity());
+            if (fulfilled) {
+                orderService.logFulfilledOrder(order);
+                logger.logFulfilledOrder(order);
             } else {
-                orderService.RejectedOrder(order);
+                orderService.logRejectedOrder(order);
+                logger.logRejectedOrder(order);
             }
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
         }
     }
+
 }
+

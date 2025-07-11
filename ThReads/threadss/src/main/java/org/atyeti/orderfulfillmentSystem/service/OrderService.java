@@ -10,18 +10,12 @@ public class OrderService {
     private final List<Order> fulfilledOrders = Collections.synchronizedList(new ArrayList<>());
     private final List<Order> rejectedOrders = Collections.synchronizedList(new ArrayList<>());
 
-    public void FulfilledOrder(Order order) {
+    public void logFulfilledOrder(Order order) {
         fulfilledOrders.add(order);
     }
 
-    public void RejectedOrder(Order order) {
+    public void logRejectedOrder(Order order) {
         rejectedOrders.add(order);
     }
 
-    public void printSummary() {
-        System.out.println(" Fulfilled Orders: " + fulfilledOrders.size());
-        fulfilledOrders.forEach(System.out::println);
-        System.out.println("Rejected Orders: " + rejectedOrders.size());
-        rejectedOrders.forEach(System.out::println);
-    }
 }
