@@ -1,0 +1,20 @@
+ Fair Ticket Booking System with ReentrantLock and Conditions
+Scenario:
+You are building a ticket booking system for a theater. Multiple users (threads) try to book tickets concurrently. The system must:
+
+Allow only one user to book at a time.
+Maintain fairness—users should be served in the order they arrive.
+Allow users to cancel their booking attempt if they wait too long (simulate with interruptible locks).
+Notify waiting users when tickets become available (using Condition).
+Requirements:
+Use ReentrantLock with fairness enabled (new ReentrantLock(true)).
+Use lock.lockInterruptibly() to allow users to cancel their booking attempt.
+Use a Condition to signal waiting threads when tickets are released.
+Simulate booking and cancellation with multiple threads.
+
+Challenge:
+Implement a TicketCounter class with methods:
+bookTicket(String userName)
+releaseTicket(String userName)
+Simulate 5 users trying to book 2 available tickets.
+If a user waits too long, they should cancel (simulate with Thread.interrupt()).
