@@ -1,0 +1,235 @@
+What is the Executor Framework?
+The Executor Framework in Java (introduced in Java 5) is a high-level API for managing
+ threads and asynchronous task execution. It abstracts away the low-level details of
+ thread creation and management.
+
+
+1. Executor (Basic Interface)
+
+ What it is:
+The simplest interface in the executor framework.
+Has only one method: void execute(Runnable command)
+
+use Case:
+When you just want to submit tasks without managing results or lifecycle.
+
+
+2.ExecutorService (Enhanced Interface)
+------------------------------------------
+ What it is:
+Extends Executor and adds task lifecycle management.
+
+Supports:
+Submitting tasks (submit())
+Getting results (Future)
+Shutting down the executor (shutdown())
+
+ Use Case:
+When you need to manage threads, track task completion, or cancel tasks.
+
+
+3. ScheduledExecutorService (For Scheduling)
+ ===============================================================
+ What it is:
+  Extends ExecutorService and adds methods for delayed and periodic task execution.
+
+   Use Case:
+  When you need to schedule tasks to run:
+  After a delay
+  At fixed intervals
+  With fixed delay between executions
+
+
+core interfaces\
+---------------------------------------------------
+ Interface	                |Description
+ --------------------------------------------------------------------------------------------------------
+ Executor	                |The base interface with a single method execute(Runnable).
+ ExecutorService	        |Extends Executor, adds lifecycle management and task submission with Callable, Future, etc.
+ ScheduledExecutorService	|Extends ExecutorService, adds support for delayed and periodic task execution.
+----------------------------------------------------------------------------------------------------------------------------
+
+ core classes/ key classes
+
+Class	                        |   Description
+-------------------------------------------------------------------------------------------------
+Executors           	        |    A utility class with factory methods to create thread pools.
+ThreadPoolExecutor  	        |    The core implementation of ExecutorService.
+ScheduledThreadPoolExecutor	    |    Implements ScheduledExecutorService.
+
+
+ Creating Executors with Executors Factory
+-----------------------------------------------------------------------------------
+ ExecutorService fixedPool = Executors.newFixedThreadPool(4);
+ ExecutorService cachedPool = Executors.newCachedThreadPool();
+ ExecutorService singleThread = Executors.newSingleThreadExecutor();
+ ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+
+
+ How It Works
+ --------------------------------------------
+ Submit a task (Runnable or Callable)
+ Executor picks a thread from the pool
+ Task runs asynchronously
+ Result (if any) is returned via Future
+ Executor can be shut down graceful
+
+
+  Benefits of Using Executor Framework
+  ---------------------------------------------------------------
+ Thread reuse: Avoids overhead of creating new threads.
+ Task queuing: Manages a queue of tasks waiting for execution.
+ Scalability: Easily handles large numbers of tasks.
+ Lifecycle management: Clean shutdown and resource management.
+
+Types of thread pools:
+===============================
+1)newFixedThreadPool(int nThreads)
+ Description:
+Creates a thread pool with a fixed number of threads. If all threads are busy, new tasks wait in a queue.
+
+ Use Case:
+When you have a known number of concurrent tasks.
+Good for CPU-bound tasks.
+
+ 2. newCachedThreadPool()
+ Description:
+Creates a thread pool that creates new threads as needed, but will reuse previously constructed threads when available.
+
+ Use Case:
+For short-lived asynchronous tasks.
+When you have many tasks with unpredictable load.
+Caution:
+Can create unbounded threads, so use with care.
+
+3. newSingleThreadExecutor()
+ Description:
+Creates a thread pool with only one thread. Tasks are executed sequentially.
+Use Case:
+When tasks must be executed in order.
+Useful for logging, file writing, or UI updates.
+
+4. newScheduledThreadPool(int corePoolSize)
+ Description:
+Creates a thread pool that can schedule tasks to run after a delay or periodically.
+ Use Case:
+For repeated or delayed tasks.
+Replaces Timer and TimerTask.
+
+Thread PoolType	     Threads	 Task Order 	    Use Case
+FixedThreadPool 	  Fixed	        FIFO	      Predictable load
+CachedThreadPool	   Dynamic	    FIFO	      Many short tasks
+SingleThreadExecutor	1	        FIFO	      Sequential tasks
+ScheduledThreadPool 	Fixed   	Scheduled	   Delayed/repeated tasks
+
+
+What is ThreadPoolExecutor?
+ThreadPoolExecutor is the core implementation of the ExecutorService interface. It gives you full control over:
+
+Number of threads
+Task queue behavior
+Thread creation
+Rejection policies
+
+
+Choosing the Right BlockingQueue
+Queue Type          	Behavior
+LinkedBlockingQueue 	Unbounded (or bounded if specified), good for fixed thread pools
+ArrayBlockingQueue	    Bounded, FIFO
+SynchronousQueue	    No queueing, hands off tasks directly to threads (used in cached pools)
+PriorityBlockingQueue	Orders tasks based on priority
+
+
+What is a BlockingQueue?
+A BlockingQueue is a thread-safe queue that supports operations that wait for the queue
+ to become non-empty when retrieving, or for space to become available when storing.
+
+ Why is it used in ThreadPoolExecutor?
+ 1. Task Buffering
+ When all threads in the pool are busy, new tasks are queued in the BlockingQueue until a thread becomes available.
+
+  2. Thread Coordination
+ It handles producer-consumer behavior:
+
+ Producer: submits tasks to the executor.
+ Consumer: worker threads take tasks from the queue and execute them.
+
+ 3. Backpressure Control
+ It helps prevent overloading the system by limiting how many tasks can be queued.
+
+  Example Flow
+ You submit a task.
+ If a thread is free → it runs immediately.
+ If all threads are busy → task goes into the queue.
+ When a thread finishes → it picks the next task from the queue.
+
+
+ 1. Submitting Tasks
+  execute(Runnable command)
+ Submits a task for execution, no result is returned.
+ Fire-and-forget style.
+
+ -> submit(): For Runnable and Callable
+ a. submit(Runnable task)
+ Returns a Future<?> that can be used to check if the task is done.
+
+ b. submit(Callable<T> task)
+ Returns a Future<T> that holds the result of the computation.
+
+
+ . Managing Task Results with Future
+  What is Future?
+ A Future represents the result of an asynchronous computation.
+
+ -------------------------------------------------------------------------------------
+ Method	                      Description
+ ---------------------------------------------------------------------------------------
+ get()	                Waits for the task to complete and returns the result
+ get(timeout, unit) 	Waits up to the timeout
+ isDone()	            Returns true if the task is completed
+ cancel()	            Attempts to cancel the task
+ isCancelled()	        Checks if the task was cancelled
+ --------------------------------------------------------------------------------------
+
+shutdown() – no new tasks, finish current ones
+
+shutdownNow() – interrupt active tasks and returns pending ones
+
+When to Use
+--------------------------------------------------------------------------------------------------
+Mmethod	        Use When...
+----------------------------------------------------------------------------------------------
+invokeAll()	    You need all results and can wait for all tasks to finish
+invokeAny()	    You only care about the first successful result and want to cancel the rest
+
+
+
+batch task submission():
+---------------------------------------
+
+Batch task submission allows you to submit multiple tasks at once and manage them
+collectively using:
+
+invokeAll()
+invokeAny()
+These methods are useful when you have a collection of tasks and want to either:
+
+Wait for all of them to complete (invokeAll)
+Wait for any one to complete successfully (invokeAny)
+
+
+1. invokeAll(Collection<? extends Callable<T>> tasks)
+
+  What it does:
+  Submits a batch of Callable tasks.
+  Returns a List<Future<T>> — one for each task.
+  Blocks until all tasks are complete.
+
+  2. invokeAny(Collection<? extends Callable<T>> tasks)
+
+  What it does:
+  Submits a batch of Callable tasks.
+  Returns the result of the first successfully completed task.
+  Cancels the rest.
+  Blocks until one task completes or throws an exception.
+
