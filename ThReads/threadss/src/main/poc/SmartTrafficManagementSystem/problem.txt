@@ -1,0 +1,94 @@
+Problem Statement: Smart Traffic Light Controller
+Context & Goal:
+Develop a multithreaded Java application that simulates an adaptive traffic light
+controller for a four-way intersection (North, East, South, West). The system needs
+to dynamically adjust green light durations based on current traffic density and handle
+ emergency vehicle overrides in real time—all while maintaining smooth, round-robin
+ traffic flow.
+
+ Requirements
+Dynamic Traffic Density Update
+
+The system must accept density updates (low, medium, high) from two sources:
+
+TrafficSensorService: Simulates real-time density readings every few seconds.
+
+FileInputService: Reads commands (DENSITY <dir> <level>, EMERGENCY <dir>) from a file, processing new lines as they appear, without manual file-rotation logic.
+
+Emergencies Handling
+
+Upon receiving EMERGENCY <direction>, the system must immediately give green light to that direction, overriding the current cycle.
+
+After the emergency green ends, normal traffic rotation resumes starting with the next direction.
+
+Adaptive Green Time Logic
+
+Green light durations depend on traffic density:
+
+high → 4000 ms
+
+medium → 3000 ms
+
+low → 2000 ms
+
+If an emergency is active, that direction gets priority green regardless of density.
+
+Fair Round-Robin Cycling
+
+In absence of emergencies, lights should follow a fixed cycle: North → East → South → West → repeat.
+
+getNextDirection() ensures each direction gets its turn in this sequence.
+
+Multithreading Requirements
+
+Each service (TrafficLightService for each direction, TrafficSensorService, FileInputService) runs in its own thread.
+
+Use an ExecutorService with a fixed thread pool (size 6) to manage these threads.
+
+All threads share a single TrafficLightController, which accesses a shared TrafficState (singleton).
+
+Termination Control (Optional)
+
+Graceful shutdown via executor.shutdown() and handling of InterruptedException so threads exit cleanly when interrupted.
+
+
+
+ System Architecture
+TrafficState:
+
+Tracks current green direction, traffic densities per direction, and any emergency direction.
+
+Uses thread-safe data structures (ConcurrentHashMap, volatile fields).
+
+TrafficLightController:
+
+updateTrafficDensity(dir, level), reportEmergency(dir), and allowTraffic(dir) manage state, logging, and thread coordination.
+
+getGreenTime(dir) computes dynamic green durations.
+
+getNextDirection(current) ensures round-robin flow.
+
+Services (Runnables):
+
+TrafficLightService: For each direction, loops, checks if it's their turn or emergency, and invokes allowTraffic.
+
+TrafficSensorService: Sleeps (5 sec), then randomly updates density, sometimes emits emergency.
+
+FileInputService: Reads new lines from a file using BufferedReader, processes density/emergency commands.
+
+Main:
+
+Instantiates a fixed-size ExecutorService.
+
+Creates and executes all service threads, passing the shared controller.
+
+(Optionally) adds shutdown logic for clean termination.
+
+ Expected Behavior
+Continuous cycling through directions with adaptive timing.
+
+Traffic updates from sensors and file are reflected in log output and influence cycle durations.
+
+Emergency commands trigger immediate green override, then revert to normal cycle.
+
+Services remain active, checking shared state until the application is terminated.

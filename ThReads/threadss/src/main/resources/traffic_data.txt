@@ -1,0 +1,6 @@
+DENSITY North high
+DENSITY East low
+EMERGENCY South
+DENSITY West medium
+DENSITY North low
+EMERGENCY East
