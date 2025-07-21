@@ -1,8 +1,10 @@
-package service;
+package org.atyeti.trafficManagement.service;
 
-import controller.TrafficLightController;
+import org.atyeti.trafficManagement.controller.TrafficLightController;
+import org.springframework.stereotype.Component;
+
 import java.util.Random;
-
+@Component
 public class TrafficSensor implements Runnable {
     private final TrafficLightController controller;
     private final Random random = new Random();
@@ -17,7 +19,7 @@ public class TrafficSensor implements Runnable {
     public void run() {
         while (true) {
             try {
-                Thread.sleep(5000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 break;
@@ -29,7 +31,7 @@ public class TrafficSensor implements Runnable {
         controller.updateTrafficDensity(direction, density);
 
 
-            if (random.nextDouble() < 0.1) {
+            if (random.nextDouble() < 0.50  ) {
                 controller.reportEmergency(direction);
             }
         }

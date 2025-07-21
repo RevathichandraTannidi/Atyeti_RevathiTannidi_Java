@@ -1,16 +1,17 @@
-package service;
+package org.atyeti.trafficManagement.service;
 
-import controller.TrafficLightController;
-import model.TrafficState;
+import org.atyeti.trafficManagement.controller.TrafficLightController;
+import org.atyeti.trafficManagement.model.TrafficState;
 
 public class TrafficLight implements Runnable {
     private final TrafficLightController controller;
     private final String direction;
-    private final TrafficState state = TrafficState.getInstance();
+    private final TrafficState state ;
 
-    public TrafficLight(String direction, TrafficLightController controller) {
+    public TrafficLight(String direction, TrafficLightController controller, TrafficState state) {
         this.direction = direction;
         this.controller = controller;
+        this.state = state;
     }
 
     @Override
@@ -21,7 +22,7 @@ public class TrafficLight implements Runnable {
                 controller.allowTraffic(direction);
             }
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 break;

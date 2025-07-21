@@ -84,7 +84,7 @@ Creates and executes all service threads, passing the shared controller.
 
 (Optionally) adds shutdown logic for clean termination.
 
- Expected Behavior
+     Expected Behavior
 Continuous cycling through directions with adaptive timing.
 
 Traffic updates from sensors and file are reflected in log output and influence cycle durations.
