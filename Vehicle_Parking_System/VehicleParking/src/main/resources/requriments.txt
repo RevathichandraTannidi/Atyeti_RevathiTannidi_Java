@@ -1,0 +1,36 @@
+A real world system for managing vehicles parking efficiently
+
+why:
+
+ A system that can allocate parking slots based on vehicle type track availability issue tickets handle entry/exit
+ payments scale across multiple floors and gates
+
+ key functions and requirements:
+
+ - support multiple vehicle types
+ - Assign nearest available slot
+ - Entry & exit gates with ticketing
+ - calculate parking fee on exit
+ - multi floor support
+
+key components
+
+- parkinglot , parking floor,parking slot
+- vehicle type(car,bike,truck,..)
+- ticket ,entrance gate, exit gate
+- fee calculator,slot Manager
+
+
+
+d
+System flow
+
+entry:
+detect vehicle type;
+assign slot
+issue ticket
+
+exit
+    read ticket
+    calculate fee
+    free the slot
