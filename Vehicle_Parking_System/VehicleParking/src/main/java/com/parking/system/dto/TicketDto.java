@@ -14,8 +14,12 @@ public class TicketDto {
     private String ticketNumber;
     private String vehicleNumber;
     private String slotNumber;
+    private String vehicleType;
+
+    private Long slotId;
     private LocalDateTime entryTime;
     private LocalDateTime exitTime;
     private Double totalAmount;
+
 }
 

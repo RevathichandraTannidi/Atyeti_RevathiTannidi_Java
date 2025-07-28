@@ -7,6 +7,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class ParkingSlot {
 
     @Id
@@ -14,11 +15,12 @@ public class ParkingSlot {
     private Long id;
 
     private String slotNumber;
-    private boolean occupied;
+    private boolean isAvailable=true;
+    private boolean isReserved=false;
 
-    @Enumerated(EnumType.STRING)
-    private VehicleType supportedType;
-
+    private String slotType;
+    // compact ,large ,handicapped
+    private String reservedForVehicleNumber;
     @ManyToOne
     @JoinColumn(name = "floor_id")
     private ParkingFloor floor;

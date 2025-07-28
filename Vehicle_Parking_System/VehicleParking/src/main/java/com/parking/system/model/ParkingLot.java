@@ -15,7 +15,7 @@ public class ParkingLot {
     private Long id;
 
     private String name;
-
-    @OneToMany(cascade = CascadeType.ALL)
+private String Location;
+    @OneToMany(mappedBy = "parkingLot",cascade = CascadeType.ALL)
     private List<ParkingFloor> floors;
 }

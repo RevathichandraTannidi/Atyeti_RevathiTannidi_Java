@@ -15,7 +15,9 @@ public class ParkingFloor {
     private Long id;
 
     private int floorNumber;
-
+    @ManyToOne
+    @JoinColumn(name = "parking_lot_id")
+    private ParkingLot parkingLot;
     @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL)
     private List<ParkingSlot> slots;
 }
