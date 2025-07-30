@@ -9,11 +9,20 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Ticket {
-    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-private double fee;
+    private String ticketNumber;
+    private LocalDateTime entryTime;
+    private LocalDateTime exitTime;
+    private double fee;
+
+    private String vehiclePlateNumber;
+
     @ManyToOne
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
@@ -21,8 +30,4 @@ private double fee;
     @ManyToOne
     @JoinColumn(name = "slot_id")
     private ParkingSlot slot;
-
-
-    private LocalDateTime entryTime;
-    private LocalDateTime exitTime;
 }

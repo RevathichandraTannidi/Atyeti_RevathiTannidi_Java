@@ -233,3 +233,53 @@ Wait for any one to complete successfully (invokeAny)
   Cancels the rest.
   Blocks until one task completes or throws an exception.
 
+some methods in executor service
+---------------------------------
+1)awaitTermination(long timeout, TimeUnit unit)
+
+Waits for the executor to terminate after a shutdown request.
+Rarely used alone; often paired with shutdown().
+
+
+2)invokeAny(Collection<? extends Callable<T>> tasks)
+
+Executes a collection of tasks and returns the result of one that completes successfully (first).
+Cancels the rest.
+
+3)submit(Runnable task, T result)
+
+Submits a Runnable and returns a Future<T> with a predefined result.
+Useful when you want to track task completion but don’t care about the actual computation.
+
+4)isTerminated() and isShutdown()
+
+Often overlooked for checking the state of the executor.
+isShutdown() returns true after shutdown is called.
+isTerminated() returns true after all tasks are completed post-shutdown.
+
+
+ Interesting Behaviors
+ =================================================
+Tasks May Not Start Immediately
+
+Even after calling submit(), tasks may wait in the queue if all threads are busy.
+Shutdown vs ShutdownNow
+
+shutdown() allows in-progress tasks to complete.
+shutdownNow() attempts to stop all actively executing tasks and returns a list of pending tasks.
+Thread Leakage
+
+If not properly shut down, threads may linger and prevent JVM from exiting.
+Deadlocks in Fixed Thread Pools
+
+Submitting tasks that wait on other tasks in the same pool can cause deadlocks.
+Custom RejectedExecutionHandler
+
+When the task queue is full, you can define custom behavior (e.g., logging, retrying, discarding).
+
+
+Using ThreadFactory for Custom Threads
+
+You can set thread names, priorities, or daemon status.
+
+

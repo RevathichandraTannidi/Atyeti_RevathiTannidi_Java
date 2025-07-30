@@ -1,16 +1,17 @@
 package com.parking.system.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 public class ParkingLotDto {
-    private Long id;
-    private String name;
-    private String location;
-    private List<ParkingFloorDto> floors;
+    private int slotNumber;
+    private String slotType;
+    private Boolean available; // changed to Boolean
+    private Boolean reserved;  // changed to Boolean
+    private String reservedForVehicleNumber;
 }
+
