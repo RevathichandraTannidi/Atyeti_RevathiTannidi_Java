@@ -39,12 +39,33 @@ public class ReportService {
             switch (type.toLowerCase()) {
                 case "product":
                     List<Product> products = csvParserUtil.parseProductsCSV(file.getInputStream());
-                    productRepo.saveAll(products);
+                    for (Product product : products) {
+                        productRepo.findBySku(product.getSku())
+                                .ifPresentOrElse(
+                                        existing -> {
+                                    existing.setName(product.getName());
+                                    existing.setReorderLevel(product.getReorderLevel());
+                                    productRepo.save(existing);
+                                    },
+                                    () -> productRepo.save(product)
+                                );
+                    }
                     break;
+
                 case "warehouse":
                     List<Warehouse> warehouses = csvParserUtil.parseWarehousesCSV(file.getInputStream());
-                    warehouseRepo.saveAll(warehouses);
+                    for (Warehouse warehouse : warehouses) {
+                        Optional<Warehouse> existing = warehouseRepo.findByLocation(warehouse.getLocation());
+                        if (existing.isPresent()) {
+                            Warehouse existingWarehouse = existing.get();
+                            existingWarehouse.setName(warehouse.getName());
+                            warehouseRepo.save(existingWarehouse);
+                        } else {
+                            warehouseRepo.save(warehouse);
+                        }
+                    }
                     break;
+
                 case "transaction":
                     List<StockTransaction> transactions = csvParserUtil.parseStockTransactionsCSV(
                             file.getInputStream(), productRepo, warehouseRepo);
@@ -54,7 +75,7 @@ public class ReportService {
                     throw new IllegalArgumentException("unknown CSV type: " + type);
             }
         } catch (IOException e) {
-            throw new RuntimeException("Failed to process CSV file", e);
+            throw new RuntimeException("failed to process CSV file", e);
         }
     }
 

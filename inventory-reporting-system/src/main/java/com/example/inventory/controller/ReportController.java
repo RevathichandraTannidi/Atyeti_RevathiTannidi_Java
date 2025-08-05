@@ -4,7 +4,7 @@ import com.example.inventory.dto.LowStockDTO;
 import com.example.inventory.dto.StockReportDTO;
 import com.example.inventory.dto.StockTrendDTO;
 import com.example.inventory.model.ReportJobStatus;
-import com.example.inventory.model.StockTransaction;
+
 import com.example.inventory.service.ReportService;
 import com.example.inventory.util.CsvExportUtil;
 import org.springframework.beans.factory.annotation.Autowired;
