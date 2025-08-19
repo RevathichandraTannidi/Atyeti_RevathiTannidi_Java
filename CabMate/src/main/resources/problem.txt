@@ -1,0 +1,137 @@
+CabMate – A Ride Sharing Simulation System
+
+ Project Description
+--------------------------------------
+CabMate is a Spring Boot–based ride-sharing simulation system that demonstrates how core Java concepts like OOP, Streams, and Multithreading can be integrated with Spring Boot features such as REST APIs, JPA (Hibernate), and Dependency Injection.
+
+It simulates the workflow of a ride-hailing application (like Uber/Ola) where:
+
+Riders can request rides,
+
+Drivers are assigned based on availability & proximity,
+
+Trips are created, tracked, and completed,
+
+The system handles multiple ride requests concurrently using Java’s multithreading model.
+
+added Advanced Features in CabMate
+1. Surge Pricing (Dynamic Fare)
+
+If rider demand is higher than available drivers, fare increases with a surge multiplier.
+
+Example:
+
+Normal fare: ₹10/km
+
+If >80% of drivers are busy → 1.5x fare
+
+2. Driver Rating & Rider Feedback
+
+After each completed ride, rider gives:
+
+Rating (1–5 stars)
+
+Feedback (text comment)
+
+Driver’s average rating is updated.
+
+Analytics can show top-rated drivers.
+
+3. Multi-threaded Ride Processing
+
+Multiple ride requests handled concurrently with ExecutorService or CompletableFuture.
+
+Simulates real-world parallel ride booking.
+
+Logs will show:
+
+“Ride Request #101 assigned to Driver X” (Thread-1)
+
+“Ride Request #102 assigned to Driver Y” (Thread-2)
+
+4. Ride History & Analytics
+
+For Riders: past trips, total distance, total fare paid.
+
+For Drivers: total rides, total earnings, avg rating.
+
+Analytics implemented with Java Streams (map, reduce, collect).
+
+5. Admin Dashboard (Spring Boot REST APIs)
+
+Admin can:
+
+View all rides (ongoing, completed, cancelled).
+
+View driver performance report.
+
+Generate system-wide statistics:
+
+Total rides completed
+
+Total earnings
+
+Average driver rating
+
+Active vs available drivers
+
+
+ Objectives
+----------------------------------
+
+Demonstrate Core Java Concepts:
+
+OOP → Entities (Rider, Driver, Trip) and design patterns (Strategy for fare calculation).
+
+Streams → Filtering and sorting drivers, analytics on rides.
+
+Multithreading → Handling multiple ride requests simultaneously with ExecutorService.
+
+Show integration of Spring Boot modules:
+
+Spring Web → RESTful APIs for ride operations.
+
+Spring Data JPA → Database persistence for riders, drivers, and trips.
+
+Spring Validation → Input validation for safe data handling.
+
+Build a scalable, modular backend project that mimics real-world ride-hailing logic.
+
+ Features
+-------------
+User Management: Register Riders & Drivers.
+
+Ride Booking: Rider requests a trip → nearest available driver assigned.
+
+Trip Lifecycle: Trips progress through states (REQUESTED, ONGOING, COMPLETED).
+
+Fare Calculation: Dynamic fare calculation based on distance.
+
+Concurrency: Multiple ride requests can be processed in parallel.
+
+Analytics: Get ride statistics using Streams (e.g., top-rated driver, total earnings).
+
+Tech Stack
+--------------------------------------------
+Java 17
+
+Spring Boot 3.x (Web, Data JPA, Validation)
+
+Database: MySQL
+
+Lombok (to reduce boilerplate)
+
+Maven (dependency management)
+
+
+
+why the data of longitude and latitude
+Reasons to still keep them
+
+Realism → A ride-hailing app like Uber/Ola is all about location. Even if we don’t draw maps, having latitude & longitude makes the simulation feel closer to real-world logic.
+
+Fare Calculation → We can calculate distance between Rider & Driver using lat/long → then compute the trip fare.
+
+Surge Pricing Logic → If most nearby drivers are busy, we apply dynamic pricing. Without locations, all drivers look the same.
+
+Future-Ready → If you ever connect a frontend (React, Angular, Flutter), or even integrate Google Maps API, the backend is already prepared.
