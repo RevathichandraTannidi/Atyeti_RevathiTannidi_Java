@@ -13,8 +13,8 @@ import javax.persistence.*;
 public class Warehouse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+    private Long id;
     private String name;
     @Column(unique = true)
     private String location;
