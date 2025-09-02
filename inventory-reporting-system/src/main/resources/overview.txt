@@ -71,8 +71,8 @@ Build Tool: Maven or Gradle
 
 Optional: Spring Security, Lombok, Apache POI (for future export)
 
-📂 Core Features
-1. ✅ CSV Upload
+ Core Features
+1. CSV Upload
 Supports uploading:
 
 products.csv
@@ -83,7 +83,7 @@ stock_transactions.csv
 
 Automatically parses and stores data into the database
 
-2. 📈 Inventory Reports
+2.  Inventory Reports
 Current Stock Report:
 
 Shows total available quantity of each product per warehouse
@@ -96,7 +96,7 @@ Stock Trend Report:
 
 Shows "IN" and "OUT" transactions over a date range
 
-3. 📤 CSV Export
+3.  CSV Export
 Download reports in CSV format for:
 
 Trend report (/download/trend)
@@ -105,7 +105,7 @@ Current stock
 
 Low stock
 
-4. 🧪 Error Handling
+4.  Error Handling
 Graceful handling of:
 
 Missing fields
@@ -115,8 +115,7 @@ Bad date formats
 Invalid product/warehouse IDs
 
 Shows appropriate error messages in responses
-
-📁 Main Packages / Modules
+Main Packages / Modules
 model – JPA Entities (Product, Warehouse, StockTransaction)
 
 repository – Spring Data JPA Repositories
