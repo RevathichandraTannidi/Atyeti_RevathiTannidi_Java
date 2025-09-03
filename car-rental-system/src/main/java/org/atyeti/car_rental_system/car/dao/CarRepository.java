@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface CarRepository extends JpaRepository<Car,Long> {
+public interface  CarRepository extends JpaRepository<Car,Long> {
     List<Car> findByBranchAndAvailableTrue(Branch branch);
 
     @Query("SELECT c FROM Car c WHERE c.available = true AND c.branch = :branch " +

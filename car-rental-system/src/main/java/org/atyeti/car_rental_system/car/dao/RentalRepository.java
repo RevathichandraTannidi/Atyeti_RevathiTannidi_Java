@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface RentalRepository extends JpaRepository<Rental,Long> {
-    List<Rental> findByUser(User user);
+    List<Rental> findByUserId(User user);
 
     List<Rental> findByCar(Car car);
 
