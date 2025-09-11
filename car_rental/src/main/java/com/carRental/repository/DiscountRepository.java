@@ -1,0 +1,18 @@
+package com.carRental.repository;
+
+
+import com.carRental.entity.Discount;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
+public interface DiscountRepository extends JpaRepository<Discount, Long> {
+    Optional<Discount> findByCode(String code);
+
+    // Fetch only active discounts (not expired)
+    @Query("SELECT d FROM Discount d WHERE d.expiryDate >= :today")
+    List<Discount> findActiveDiscounts(LocalDate today);
+}
