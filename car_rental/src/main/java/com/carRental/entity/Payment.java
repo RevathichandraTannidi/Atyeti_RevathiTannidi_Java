@@ -37,6 +37,6 @@ public class Payment {
 
     @PrePersist
     public void prePersist() {
-        this.timestamp = LocalDateTime.now(); // sets timestamp automatically when saving
+        this.timestamp = LocalDateTime.now();
     }
 }

@@ -22,7 +22,7 @@ public class RentalService {
     private final CarService carService;
     private final DiscountService discountService;
 
-    // Book a rental with optional discount
+
     public Rental bookRental(User user, Car car, Branch pickup, Branch dropoff,
                              LocalDate start, LocalDate end, String discountCode) {
 

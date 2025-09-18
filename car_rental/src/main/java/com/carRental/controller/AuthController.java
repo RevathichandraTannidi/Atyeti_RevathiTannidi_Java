@@ -7,6 +7,7 @@ import com.carRental.dtos.RegisterRequestDTO;
 import com.carRental.entity.User;
 import com.carRental.repository.UserRepository;
 import com.carRental.security.JwtUtil;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class AuthController {
     private final JwtUtil jwtUtil;
 
     @PostMapping("/register")
-    public String register(@RequestBody RegisterRequestDTO dto) {
+    public String register(@Valid @RequestBody RegisterRequestDTO dto) {
         if (userRepository.findByEmail(dto.getEmail()).isPresent()) {
             return "Email already in use";
         }
@@ -42,7 +43,7 @@ public class AuthController {
         if (!passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
             throw new RuntimeException("Invalid email or password");
         }
-        String token = jwtUtil.generateToken(user.getUsername(), user.getRole().name());
+        String token = jwtUtil.generateToken(user.getId(),user.getUsername(), user.getRole().name());
         LoginResponseDTO response = new LoginResponseDTO();
         response.setToken(token);
         response.setUsername(user.getUsername());

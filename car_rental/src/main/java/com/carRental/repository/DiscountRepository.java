@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface DiscountRepository extends JpaRepository<Discount, Long> {
     Optional<Discount> findByCode(String code);
 
-    // Fetch only active discounts (not expired)
+
     @Query("SELECT d FROM Discount d WHERE d.expiryDate >= :today")
     List<Discount> findActiveDiscounts(LocalDate today);
 }

@@ -39,7 +39,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.PAYMENT_REQUIRED);
     }
 
-    @ExceptionHandler(Exception.class) // fallback for any other errors
+    @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneric(Exception ex) {
         ErrorResponse error = new ErrorResponse("Internal Server Error: " + ex.getMessage(),
                 HttpStatus.INTERNAL_SERVER_ERROR.value(), LocalDateTime.now());

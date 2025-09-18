@@ -20,7 +20,7 @@ public class CSVReportService {
     private final RentalRepository rentalRepository;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    /** Rental History CSV */
+
     public String generateRentalHistoryCsv(LocalDate start, LocalDate end) {
         List<Rental> rentals = rentalRepository.findByStartDateBetween(start, end);
         StringWriter sw = new StringWriter();
@@ -45,7 +45,7 @@ public class CSVReportService {
         return sw.toString();
     }
 
-    /** Revenue by Branch CSV */
+
     public String generateRevenueByBranchCsv(LocalDate start, LocalDate end) {
         List<Rental> rentals = rentalRepository.findByStartDateBetween(start, end);
         Map<String, Double> revenue = rentals.stream()
@@ -61,7 +61,7 @@ public class CSVReportService {
         return sw.toString();
     }
 
-    /** Revenue by Car CSV */
+
     public String generateRevenueByCarCsv(LocalDate start, LocalDate end) {
         List<Rental> rentals = rentalRepository.findByStartDateBetween(start, end);
         Map<String, Double> revenue = rentals.stream()
@@ -77,7 +77,7 @@ public class CSVReportService {
         return sw.toString();
     }
 
-    /** Car Usage CSV */
+
     public String generateCarUsageCsv(LocalDate start, LocalDate end) {
         List<Rental> rentals = rentalRepository.findByStartDateBetween(start, end);
         Map<String, Long> usage = rentals.stream()
@@ -93,7 +93,7 @@ public class CSVReportService {
         return sw.toString();
     }
 
-    /** Customer Loyalty CSV */
+
     public String generateCustomerLoyaltyCsv() {
         List<Rental> rentals = rentalRepository.findAll();
         Map<Long, List<Rental>> rentalsByUser = rentals.stream()

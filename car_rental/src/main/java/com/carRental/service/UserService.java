@@ -8,21 +8,29 @@ import com.carRental.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
+
     private final UserRepository userRepository;
 
+
     public User registerUser(User user) {
+
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             throw new BadRequestException("Email already in use: " + user.getEmail());
         }
-        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
+
+        //  want to allow duplicate usernames, remove the following check
+        /*
+        List<User> existingUsers = userRepository.findByUsername(user.getUsername());
+        if (!existingUsers.isEmpty()) {
             throw new BadRequestException("Username already taken: " + user.getUsername());
         }
+        */
+
         return userRepository.save(user);
     }
 
@@ -31,10 +39,12 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
     }
 
+
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with email " + email));
     }
+
 
     public List<User> getUsersByRole(Role role) {
         List<User> users = userRepository.findByRole(role);
@@ -44,6 +54,7 @@ public class UserService {
         return users;
     }
 
+
     public List<User> searchUsersByName(String name) {
         List<User> users = userRepository.searchByUsername(name);
         if (users.isEmpty()) {
@@ -52,16 +63,18 @@ public class UserService {
         return users;
     }
 
+
     public User updateLoyaltyPoints(Long userId, int points) {
-        User user = getUserById(userId);
         if (points <= 0) {
             throw new BadRequestException("Loyalty points must be positive");
         }
+        User user = getUserById(userId);
         user.setLoyaltyPoints(user.getLoyaltyPoints() + points);
         return userRepository.save(user);
     }
+
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-
 }

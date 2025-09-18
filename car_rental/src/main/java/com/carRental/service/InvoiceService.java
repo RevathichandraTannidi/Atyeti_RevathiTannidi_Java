@@ -22,7 +22,8 @@ public class InvoiceService {
     private final InvoiceRepository invoiceRepository;
     private final RentalRepository rentalRepository;
 
-    /** Create invoice */
+
+
     public InvoiceResponseDTO generateInvoice(InvoiceRequestDTO dto) {
         if (dto.getAmount() <= 0) {
             throw new BadRequestException("Invoice amount must be greater than zero");
@@ -40,7 +41,7 @@ public class InvoiceService {
         return toDTO(saved);
     }
 
-    /** Invoices between dates */
+
     public List<InvoiceResponseDTO> getInvoicesBetween(LocalDateTime start, LocalDateTime end) {
         if (start == null || end == null) {
             throw new BadRequestException("Start and end dates must be provided");
@@ -56,13 +57,13 @@ public class InvoiceService {
         return invoices.stream().map(this::toDTO).collect(Collectors.toList());
     }
 
-    /** All invoices */
+
     public List<InvoiceResponseDTO> getAllInvoices() {
         return invoiceRepository.findAll()
                 .stream().map(this::toDTO).collect(Collectors.toList());
     }
 
-    /** Entity -> DTO */
+
     private InvoiceResponseDTO toDTO(Invoice invoice) {
         InvoiceResponseDTO dto = new InvoiceResponseDTO();
         dto.setId(invoice.getId());
