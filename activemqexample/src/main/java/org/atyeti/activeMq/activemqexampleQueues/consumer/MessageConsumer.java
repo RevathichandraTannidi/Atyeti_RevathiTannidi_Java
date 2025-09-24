@@ -8,7 +8,7 @@ public class MessageConsumer {
 
     @JmsListener(destination = "my-queue")
     public void receiveMessage(String message) {
-        System.out.println("Received message: " + message);
+        System.out.println("Received message through queue : " + message);
     }
 }
 
