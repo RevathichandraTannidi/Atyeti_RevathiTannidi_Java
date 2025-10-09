@@ -19,7 +19,7 @@ public class TicketController {
     public TicketController(TicketProducer producer, BookingRepository bookingRepository) {
         this.producer = producer;
         this.bookingRepository = bookingRepository;
-    }
+    }  
 
     @PostMapping("/book")
     public ResponseEntity<String> bookTicket(@RequestBody BookingRequest request) {
