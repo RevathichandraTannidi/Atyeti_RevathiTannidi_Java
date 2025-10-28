@@ -20,10 +20,9 @@ import java.util.Map;
 @EnableKafka
 public class KafkaConfig {
 
-    // ✅ Kafka bootstrap server
+    
     private static final String BOOTSTRAP_SERVER = "localhost:9092";
 
-    // ✅ Producer configuration
     @Bean
     public ProducerFactory<String, String> producerFactory() {
         Map<String, Object> config = new HashMap<>();
@@ -33,13 +32,12 @@ public class KafkaConfig {
         return new DefaultKafkaProducerFactory<>(config);
     }
 
-    // ✅ Kafka Template for sending messages
+
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 
-    // ✅ Consumer configuration
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> config = new HashMap<>();
@@ -50,7 +48,6 @@ public class KafkaConfig {
         return new DefaultKafkaConsumerFactory<>(config);
     }
 
-    // ✅ Listener container factory
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory =
@@ -59,7 +56,6 @@ public class KafkaConfig {
         return factory;
     }
 
-    // ✅ Create Kafka topic automatically if it doesn’t exist
     @Bean
     public NewTopic deviceStatusTopic() {
         return new NewTopic("device-status", 1, (short) 1);
