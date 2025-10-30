@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-dark">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Student Dashboard</span>
+        <a href="/logout" class="btn btn-light btn-sm">Logout</a>
+    </div>
+</nav>
+<div class="container mt-4">
+    <h4>Your Attendance Summary</h4>
+    <p id="attendancePercentage">Loading...</p>
+
+    <h4 class="mt-4">Request Leave</h4>
+    <form id="leaveForm">
+        <div class="mb-3">
+            <textarea class="form-control" name="reason" placeholder="Reason for leave" required></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+
+    <h5 class="mt-5">Your Leave Requests</h5>
+    <table class="table table-bordered">
+        <thead><tr><th>Reason</th><th>Status</th></tr></thead>
+        <tbody id="studentLeaves"></tbody>
+    </table>
+</div>
+<script src="js/student.js"></script>
+</body>
+</html>
