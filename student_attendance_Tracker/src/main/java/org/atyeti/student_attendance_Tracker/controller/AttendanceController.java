@@ -16,7 +16,7 @@ import java.util.*;
 @RequestMapping("/api/attendance")
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin(origins = "http://localhost:3000")
+
 public class AttendanceController {
 
     private final AttendanceService attendanceService;

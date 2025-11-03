@@ -14,8 +14,9 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin(origins = "http://localhost:3000")
+
 @RequestMapping("/api/admin/students")
+@CrossOrigin(origins = "*")
 public class StudentController {
 
     private final StudentService studentService;

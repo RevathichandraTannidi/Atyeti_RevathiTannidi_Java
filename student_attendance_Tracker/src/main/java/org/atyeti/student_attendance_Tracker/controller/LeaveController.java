@@ -16,7 +16,6 @@ import java.util.List;
 @RequestMapping("/api/leaves")
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin(origins = "http://localhost:3000")
 public class LeaveController {
 
     private final LeaveRequestService leaveService;
