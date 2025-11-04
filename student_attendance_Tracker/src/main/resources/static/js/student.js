@@ -1,46 +1,85 @@
-// student.js
 
-async function login() {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+const user = JSON.parse(localStorage.getItem("user"));
 
-    try {
-        const res = await fetch("/api/auth/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password })
-        });
-
-        if (!res.ok) throw new Error("Login failed");
-
-        const user = await res.json();
-
-        if (user.role === "ADMIN") {
-            window.location.href = "/admin-dashboard.html";
-        } else {
-            window.location.href = "/student-dashboard.html";
-        }
-    } catch (err) {
-        alert("Invalid credentials");
-        console.error(err);
-    }
+if (!user) {
+  alert("Please log in first.");
+  location.href = "index.html";
 }
 
-async function loadStudents() {
-    const res = await fetch("/api/admin/students");
-    const students = await res.json();
+document.getElementById("studentName").innerText = `Welcome, ${user.name}`;
 
-    const tbody = document.querySelector("#studentTable tbody");
-    tbody.innerHTML = "";
 
-    students.forEach(s => {
-        const row = `
-            <tr>
-                <td>${s.name}</td>
-                <td>${s.rollNumber}</td>
-                <td>${s.email}</td>
-                <td>${s.role}</td>
-            </tr>`;
-        tbody.innerHTML += row;
+async function markAttendance(status) {
+  try {
+    const res = await fetch(`${BASE_URL}/api/attendance/mark/${user.id}?status=${status}`, {
+      method: "POST"
     });
+
+    if (res.ok) {
+      alert(`Attendance marked as ${status}`);
+      loadMyLeaves();
+    } else {
+      const msg = await res.text();
+      alert(`Failed to mark attendance: ${msg}`);
+    }
+  } catch (err) {
+    console.error("Error marking attendance:", err);
+    alert("Server error while marking attendance.");
+  }
 }
+
+async function requestLeave() {
+  const reason = prompt("Enter reason for leave:");
+  if (!reason) return;
+
+  try {
+    const res = await fetch(`${BASE_URL}/api/leaves/student/${user.id}?reason=${encodeURIComponent(reason)}`, {
+      method: "POST"
+    });
+
+    if (res.ok) {
+      alert("Leave request submitted!");
+      loadMyLeaves();
+    } else {
+      const msg = await res.text();
+      alert(`Failed to submit leave: ${msg}`);
+    }
+  } catch (err) {
+    console.error("Error submitting leave:", err);
+    alert("Server error while submitting leave request.");
+  }
+}
+
+
+async function loadMyLeaves() {
+  try {
+    const res = await fetch(`${BASE_URL}/api/leaves/student/${user.id}`);
+    if (!res.ok) throw new Error("Failed to load leave data.");
+
+    const leaves = await res.json();
+    const list = document.getElementById("myLeaves");
+    list.innerHTML = "";
+
+    if (leaves.length === 0) {
+      list.innerHTML = `<li class="list-group-item text-muted">No leave requests yet.</li>`;
+      return;
+    }
+
+    leaves.forEach(l => {
+      const li = document.createElement("li");
+      li.className = "list-group-item";
+      li.innerText = `${l.reason} - ${l.status}`;
+      list.appendChild(li);
+    });
+  } catch (err) {
+    console.error("Error loading leaves:", err);
+    alert("Server error while fetching leave data.");
+  }
+}
+
+function logout() {
+  localStorage.clear();
+  location.href = "index.html";
+}
+
+loadMyLeaves();
