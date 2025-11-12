@@ -10,9 +10,9 @@ import java.util.*;
 import java.util.concurrent.*;
 
 @Slf4j
+@Getter
 public class ElevatorManagerService {
 
-    @Getter
     private final Map<Integer, ElevatorService> elevators = new ConcurrentHashMap<>();
 
     public ElevatorManagerService(int numElevators) {
@@ -26,7 +26,7 @@ public class ElevatorManagerService {
     public void startAllElevators() {
         ExecutorService pool = Executors.newFixedThreadPool(elevators.size());
         elevators.values().forEach(pool::execute);
-        log.info(" Started {} elevators.", elevators.size());
+        log.info("Started {} elevators.", elevators.size());
     }
 
     public void addRequestToElevator(int elevatorId, Request request) {
@@ -38,6 +38,11 @@ public class ElevatorManagerService {
         } else {
             log.warn("Elevator {} not found!", elevatorId);
         }
+    }
+
+    public void stopAllElevators() {
+        elevators.values().forEach(ElevatorService::stopService);
+        log.info("All elevators stopped.");
     }
 
     public Collection<ElevatorService> getElevatorServices() {

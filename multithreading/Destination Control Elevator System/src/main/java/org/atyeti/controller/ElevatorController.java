@@ -30,10 +30,13 @@ public class ElevatorController {
         return randomElevator;
     }
 
+    public List<ElevatorService> getElevatorServices() {
+        return elevators;
+    }
 
     private void assignRequest(ElevatorService elevator, int from, int to) {
         double eta = Math.abs(elevator.getElevator().getCurrentFloor() - from) * 0.5;
-        log.info("[{}] Randomly assigning Elevator {} for [From {} → {}] | ETA: {} sec",
+        log.info("[{}] assigning Elevator {} for [From {} → {}] | ETA: {} sec",
                 java.time.LocalTime.now().withNano(0),
                 elevator.getElevator().getId(), from, to, eta);
 
