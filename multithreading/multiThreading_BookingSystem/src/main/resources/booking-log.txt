@@ -1,0 +1,11 @@
+2025-11-19 15:36:53 [pool-1-thread-1] PAYMENT SUCCESS: Payment of 400.0 processed successfully.
+2025-11-19 15:36:53 [pool-1-thread-1] BOOKED RANDOM SEATS: [15, 9]
+2025-11-19 15:37:22 [pool-1-thread-2] PAYMENT FAILED: Payment FAILED! Please try again.
+2025-11-19 15:37:48 [pool-1-thread-3] PAYMENT FAILED: Payment FAILED! Please try again.
+2025-11-19 15:38:10 [pool-1-thread-4] PAYMENT SUCCESS: Payment of 600.0 processed successfully.
+2025-11-19 15:38:10 [pool-1-thread-4] BOOKED RANDOM SEATS: [7, 10, 4]
+2025-11-19 15:38:54 [pool-1-thread-5] PAYMENT SUCCESS: Payment of 800.0 processed successfully.
+2025-11-19 15:38:54 [pool-1-thread-5] BOOKED RANDOM SEATS: [5, 18, 13, 6]
+2025-11-19 15:39:53 [pool-1-thread-1] PAYMENT SUCCESS: Payment of 600.0 processed successfully.
+2025-11-19 15:39:53 [pool-1-thread-1] BOOKED RANDOM SEATS: [17, 9, 16]
+2025-11-19 15:40:02 [pool-1-thread-2] PAYMENT FAILED: Payment FAILED! Please try again.
