@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
         try {
             System.out.print("Enter directory path: ");
             String dir = scanner.nextLine().trim();
@@ -16,9 +15,9 @@ public class Main {
                 return;
             }
 
-            System.out.print("Enter search keyword: ");
-            String keyword = scanner.nextLine().trim();
-            if (keyword.isEmpty()) {
+            System.out.print("Enter search keyword(s) (comma separated for multiple): ");
+            String keywordInput = scanner.nextLine().trim();
+            if (keywordInput.isEmpty()) {
                 System.out.println("Keyword is required.");
                 return;
             }
@@ -40,7 +39,7 @@ public class Main {
             }
 
             SearchEngineService service = new SearchEngineService();
-            service.search(dir, keyword, threads);
+            service.search(dir, keywordInput, threads);
 
         } catch (Exception e) {
             SearchLogger.logError("Application failed", e);
