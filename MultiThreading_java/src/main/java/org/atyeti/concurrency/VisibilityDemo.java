@@ -1,4 +1,4 @@
-package org.atyeti.multiThreading.threadclass;
+package org.atyeti.concurrency;
 
 class VisibilityDemo {
     static volatile boolean running = false;
