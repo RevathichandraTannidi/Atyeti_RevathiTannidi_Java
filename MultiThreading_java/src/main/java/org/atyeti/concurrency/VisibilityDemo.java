@@ -12,6 +12,6 @@ class VisibilityDemo {
 
         t.start();
         Thread.sleep(1000);
-        running = true;
+        //running = true;
     }
 }

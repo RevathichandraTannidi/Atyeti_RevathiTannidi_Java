@@ -1,4 +1,4 @@
-package org.atyeti.multiThreading.itc;
+package org.atyeti.multiThreading.itc.blockingQueuePart;
 
 import java.util.Collection;
 import java.util.Iterator;
