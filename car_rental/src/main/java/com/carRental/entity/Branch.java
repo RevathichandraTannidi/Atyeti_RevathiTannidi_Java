@@ -17,6 +17,8 @@ public class Branch {
     private String address;
     private String contact;
 
+
+
     @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL)
     private List<Car> cars;
 

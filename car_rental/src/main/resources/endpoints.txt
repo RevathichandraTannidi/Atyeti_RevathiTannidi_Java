@@ -1,0 +1,208 @@
+
+now postman methods
+
+
+Here’s a complete list of Postman API endpoints for your Car Rental system based on the services, controllers, and CSV reporting we’ve built. I’ve organized them by module with HTTP method, URL, request body (if required), and description.
+
+1️⃣ User API
+Method	URL	Body	Description
+POST	/api/users/register	{ "username":"john", "email":"john@example.com", "password":"123", "role":"CUSTOMER" }	Register a new user
+GET	/api/users/{id}	—	Get user by ID
+GET	/api/users/role/{role}	—	Get all users with a specific role (CUSTOMER, ADMIN, STAFF)
+GET	/api/users/search?name={name}	—	Search users by name
+PUT	/api/users/{id}/loyalty?points=10	—	Add loyalty points to a user
+2️⃣ Car API
+Method	URL	Body	Description
+POST	/api/cars	{ "model":"Model S","brand":"Tesla","year":2023,"pricePerDay":150.0,"mileage":1200,"available":true,"nextAvailableDate":"2025-09-10","branchId":1 }	Add a new car
+GET	/api/cars/{id}	—	Get car by ID
+GET	/api/cars/available	—	Get all available cars
+GET	/api/cars/branch/{branchId}	—	Get cars for a specific branch
+GET	/api/cars/available-before?date=2025-09-15	—	Get cars available before a certain date
+3️⃣ Rental API
+Method	URL	Body	Description
+POST	/api/rentals/book	{ "userId":1, "carId":2, "pickupBranchId":1, "dropoffBranchId":2, "startDate":"2025-09-10","endDate":"2025-09-15" }	Book a new rental
+PUT	/api/rentals/{id}/status?status=ONGOING	—	Update rental status
+GET	/api/rentals/between?startDate=2025-09-01&endDate=2025-09-30	—	Get rentals between dates
+GET	/api/rentals/status/{status}	—	Get rentals by status
+4️⃣ Payment API
+Method	URL	Body	Description
+POST	/api/payments/process	{ "rentalId":1, "amount":150.0, "method":"CREDIT_CARD" }	Process a payment
+GET	/api/payments/status/{status}	—	Get payments by status (PENDING, COMPLETED, FAILED)
+GET	/api/payments/pending	—	Get all pending payments
+GET	/api/payments/high-value?minAmount=500	—	Get completed payments above a threshold
+5️⃣ Discount API
+Method	URL	Body	Description
+POST	/api/discounts	{ "code":"SUMMER25", "type":"PERCENTAGE", "value":25, "expiryDate":"2025-09-30" }	Create a new discount
+GET	/api/discounts/active	—	Get active discounts
+GET	/api/discounts/apply?code=SUMMER25&amount=100	—	Calculate discounted price
+6️⃣ Notification API
+Method	URL	Body	Description
+POST	/api/notifications	{ "userId":1, "type":"EMAIL", "message":"Your booking is confirmed" }	Send a notification
+GET	/api/notifications/user/{userId}	—	Get all notifications for a user
+GET	/api/notifications/all	—	Get all notifications ordered by date
+7️⃣ Branch API
+Method	URL	Body	Description
+POST	/api/branches	{ "name":"Downtown","address":"123 Main St","contact":"1234567890" }	Create a branch
+GET	/api/branches/{id}	—	Get branch by ID
+GET	/api/branches/name/{name}	—	Get branch by name
+GET	/api/branches/search?name=town	—	Search branches by name
+GET	/api/branches/search-address?address=Main	—	Search branches by address
+GET	/api/branches	—	Get all branches
+8️⃣ Report API (CSV Export)
+Method	URL	Params	Description
+GET	/api/reports/rentals	startDate=2025-09-01&endDate=2025-09-30	Download rental history CSV
+GET	/api/reports/revenue	startDate=2025-09-01&endDate=2025-09-30	Download revenue CSV
+GET	/api/reports/cars-usage	—	Download car usage CSV
+GET	/api/reports/customer-loyalty	—	Download customer loyalty CSV
+
+
+
+
+✅ User APIs (register, get by id, search, update loyalty)
+
+✅ Car APIs (add, get by id, list available, by branch, etc.)
+
+✅ Rental APIs (book, extend, cancel, history)
+
+✅ Payment APIs (pay, refund, get payments)
+
+✅ Notification APIs (send, get user notifications, get all notifications)
+
+✅ Report APIs (export CSV, revenue report, etc.)
+
+
+
+1. User API
+
+Register a user (/api/users/register)
+
+(Later you’d add login/authentication, but for now just register and fetch)
+
+Optionally assign roles: ADMIN, CUSTOMER, STAFF
+
+👉 Needed first because everything else links to users (rentals, payments, notifications).
+
+🔹 2. Branch API
+
+Create branches (/api/branches) with name, address, contact
+
+Get list of branches
+
+👉 Cars need branches to be linked.
+
+🔹 3. Car API
+
+Add cars (/api/cars) and assign them to a branchId
+
+Get available cars, search by branch, availability date
+
+👉 Rentals depend on cars.
+
+🔹 4. Discount API
+
+Create discounts (/api/discounts) – promo codes, percentage/flat
+
+List all discounts
+
+👉 Payments can apply discounts later.
+
+🔹 5. Rental API
+
+Book a rental (/api/rentals) → requires userId, carId, pickupBranchId, dropoffBranchId, startDate, endDate
+
+Extend rental (/api/rentals/{id}/extend)
+
+Cancel rental (/api/rentals/{id}/cancel)
+
+Get rental history by user
+
+👉 Core of the system – this links User + Car + Branch.
+
+🔹 6. Payment API
+
+Make payment (/api/payments) → requires rentalId, amount, method, discountCode (optional)
+
+Refund payment if rental is canceled (/api/payments/{id}/refund)
+
+Download invoice (/api/payments/{id}/invoice)
+
+👉 Payments happen after rentals.
+
+🔹 7. Notification API
+
+Send notification (/api/notifications) → for bookings, cancellations, reminders
+
+Get user notifications (/api/notifications/user/{id})
+
+👉 Usually triggered after rental or payment events.
+
+🔹 8. Report API
+
+Export rental history CSV (/api/reports/rentals/csv)
+
+Generate revenue/usage reports
+
+👉 For admins/managers to analyze the system.
+
+✅ So the logical flow for testing in Postman is:
+User → Branch → Car → Rental-> discount → Payment → Notification → Report
+
+
+
+
+
+
+Create a new branch
+
+POST /api/branches
+Body (JSON):
+
+{
+  "name": "Downtown Branch",
+  "address": "123 Main Street, City",
+  "contact": "+1-555-123-4567"
+}
+
+2. Get branch by ID
+
+GET /api/branches/{id}
+Example:
+GET /api/branches/1
+
+3. Get branch by exact name
+
+GET /api/branches/name/{name}
+Example:
+GET /api/branches/name/Downtown Branch
+
+4. Search branches by partial name
+
+GET /api/branches/search/name?name={name}
+Example:
+GET /api/branches/search/name?name=town
+
+5. Search branches by partial address
+
+GET /api/branches/search/address?address={address}
+Example:
+GET /api/branches/search/address?address=Main
+
+6. Get all branches
+
+GET /api/branches
+
+7. Update a branch
+
+PUT /api/branches/{id}
+Body (JSON):
+
+{
+  "name": "Updated Branch",
+  "address": "456 New Road, City",
+  "contact": "+1-555-987-6543"
+}
+
+
+
+
+first go to auth and post auth login and get the token go to authorization -> go to bearer token and give the token get the datta

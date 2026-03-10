@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="css/style1.css">
+</head>
+<body>
+<h1>Student Dashboard</h1>
+<button onclick="logout()">Logout</button>
+
+<section>
+    <h2>My Attendance</h2>
+    <div id="attendanceContainer"></div>
+</section>
+
+<section>
+    <h2>My Leave Requests</h2>
+    <div id="leaveContainer"></div>
+    <input type="text" id="leaveReason" placeholder="Leave reason" />
+    <button onclick="submitLeave()">Submit Leave</button>
+</section>
+
+<script src="js/config.js"></script>
+<script src="js/student.js"></script>
+<script src="js/attendance.js"></script>
+<script src="js/leave.js"></script>
+</body>
+</html>
