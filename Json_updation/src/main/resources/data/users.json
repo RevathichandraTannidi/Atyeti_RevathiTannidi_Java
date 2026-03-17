@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "name": "Alice",
+    "age": 25,
+    "city": "Delhi",
+    "department": "Engineering",
+    "address": {
+      "street": "A1",
+      "area": "Karol Bagh",
+      "pincode": "110001"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Bob",
+    "age": 30,
+    "city": "Mumbai",
+    "department": "Finance",
+    "address": {
+      "street": "B1",
+      "area": "Andheri",
+      "pincode": "400001"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Charlie",
+    "age": 28,
+    "city": "Bangalore",
+    "department": "Engineering",
+    "address": {
+      "street": "C1",
+      "area": "Whitefield",
+      "pincode": "560001"
+    }
+  },
+  {
+    "id": 4,
+    "name": "David",
+    "age": 35,
+    "city": "Hyderabad",
+    "department": "HR",
+    "address": {
+      "street": "D1",
+      "area": "Madhapur",
+      "pincode": "500081"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Eva",
+    "age": 27,
+    "city": "Chennai",
+    "department": "Marketing",
+    "address": {
+      "street": "E1",
+      "area": "T Nagar",
+      "pincode": "600001"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Frank",
+    "age": 31,
+    "city": "Pune",
+    "department": "Engineering",
+    "address": {
+      "street": "F1",
+      "area": "Hinjewadi",
+      "pincode": "411057"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Grace",
+    "age": 29,
+    "city": "Kolkata",
+    "department": "Finance",
+    "address": {
+      "street": "G1",
+      "area": "Salt Lake",
+      "pincode": "700091"
+    }
+  },
+  {
+    "id": 8,
+    "name": "Henry",
+    "age": 33,
+    "city": "Ahmedabad",
+    "department": "Engineering",
+    "address": {
+      "street": "H1",
+      "area": "Navrangpura",
+      "pincode": "380009"
+    }
+  },
+  {
+    "id": 9,
+    "name": "Ivy",
+    "age": 26,
+    "city": "Jaipur",
+    "department": "HR",
+    "address": {
+      "street": "I1",
+      "area": "Malviya Nagar",
+      "pincode": "302017"
+    }
+  },
+  {
+    "id": 10,
+    "name": "Jack",
+    "age": 34,
+    "city": "Lucknow",
+    "department": "Marketing",
+    "address": {
+      "street": "J1",
+      "area": "Gomti Nagar",
+      "pincode": "226010"
+    }
+  },
+  {
+    "id": 11,
+    "name": "Karen sindra",
+    "age": 32,
+    "city": "Surat",
+    "department": "Finance",
+    "address": {
+      "street": "K1",
+      "area": "Adajan",
+      "pincode": "395009"
+    }
+  },
+  {
+    "id": 12,
+    "name": "Leo Jane",
+    "age": 24,
+    "city": "Indore",
+    "department": "Engineering",
+    "address": {
+      "street": "L1",
+      "area": "Vijay Nagar",
+      "pincode": "452010"
+    }
+  },
+  {
+    "id": 13,
+    "name": "Monalisa",
+    "age": 29,
+    "city": "Bhopal",
+    "department": "HR",
+    "address": {
+      "street": "M1",
+      "area": "Arera Colony",
+      "pincode": "462016"
+    }
+  },
+  {
+    "id": 14,
+    "name": "Nina shein",
+    "age": 27,
+    "city": "Chandigarh",
+    "department": "Marketing",
+    "address": {
+      "street": "N1",
+      "area": "Sector 17",
+      "pincode": "160017"
+    }
+  },
+  {
+    "id": 15,
+    "name": "Orry ",
+    "age": 36,
+    "city": "Nagpur",
+    "department": "Engineering",
+    "address": {
+      "street": "O1",
+      "area": "Dharampeth",
+      "pincode": "440010"
+    }
+  }
+]

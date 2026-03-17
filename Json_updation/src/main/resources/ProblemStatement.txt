@@ -1,0 +1,485 @@
+JSON Update Handler Using Java and Jackson:
+
+The objective of this task is to build a Java program that reads a large main JSON
+file containing user records and an input JSON file containing update requests,
+then applies those updates correctly. The program should load both JSON files using
+the Jackson library, find records in the main file based on the given ID, update
+simple and nested fields as specified, and create a new record if the ID does not
+already exist. After processing all update requests, the program must save the
+updated data back to the main JSON file so that existing records are modified and
+new records are added successfully.
+
+
+Problem Statement: JSON File Update System Using Unique ID
+
+In many applications, data is stored in JSON files containing arrays of objects. Each object in the array represents a record and contains a unique identifier (ID) along with other attributes.
+
+The requirement is to develop a Java-based utility system that can read, update, and maintain JSON array files using the unique ID as the primary key.
+
+The system should accept an input update request containing an ID and a set of fields that need to be updated. The program must locate the object in the JSON array with the matching ID and update the specified fields. If the ID does not exist in the JSON file, the system should create and append a new object with the given ID and provided values.
+
+Additionally, the system should support nested JSON field updates using a path notation (e.g., address.street). After performing updates, the modified JSON data must be written back to the file so it can be reused by other components or future processes.
+
+This utility should be designed to be generic and reusable, allowing updates on multiple JSON files with different structures, and should work even when real-time external systems or databases are not available.
+
+Functional Requirements
+
+The system must read a JSON file containing an array of objects.
+
+Each object must contain a unique identifier field (id).
+
+The system must accept update input containing:
+
+ID
+
+One or more fields to update.
+
+If the ID exists:
+
+Update the specified fields.
+
+If the ID does not exist:
+
+Create a new record and add it to the JSON array.
+
+The system must support nested field updates using path notation (e.g., address.street).
+
+After modification, the updated JSON array must be saved back to the file.
+
+The solution should be implemented in Java using a JSON processing library such as Jackson Databind.
+
+Expected Outcome
+
+A reusable Java utility module capable of performing dynamic updates on JSON array files using unique identifiers, enabling structured data management even in environments without database access.
+
+
+If you'd like, I can also show how real companies convert this problem into a system design question (with architecture, classes, and flow diagram) which will make your Java implementation much easier.
+
+
+1️⃣ System Design Overview
+
+The goal is to build a JSON Update Utility System that can:
+
+Read JSON array files
+
+Find records using unique ID
+
+Update fields (including nested paths)
+
+Add new records if ID not found
+
+Save updated JSON back to file
+
+The system acts like a small file-based database when a real database is not available.
+
+You will use a JSON library such as Jackson Databind to parse and update JSON.
+
+2️⃣ High-Level Architecture
+           Update Request
+                │
+                ▼
+        Update Controller
+                │
+                ▼
+        JSON Update Service
+        ├── Read JSON File
+        ├── Find Record by ID
+        ├── Update Fields
+        ├── Add Record if Missing
+                │
+                ▼
+          JSON File Writer
+                │
+                ▼
+           Updated JSON File
+3️⃣ Component Design
+1. Main Application
+
+Responsible for:
+
+Taking input
+
+Calling update service
+
+Example:
+
+Main.java
+2. Update Request Model
+
+Represents update input.
+
+class UpdateRequest {
+
+    int id;
+    Map<String, Object> updates;
+
+}
+
+Example request:
+
+id = 2
+
+updates:
+city = Hyderabad
+address.street = C3
+3. JSON File Manager
+
+Handles file operations.
+
+Responsibilities:
+
+Read JSON file
+
+Write JSON file
+
+JsonFileManager
+ ├── readJsonFile()
+ └── writeJsonFile()
+4. JSON Update Service
+
+Core logic of the system.
+
+Responsibilities:
+
+Search record by ID
+
+Update fields
+
+Add record if not found
+
+JsonUpdateService
+ ├── updateRecord()
+ ├── findRecordById()
+ ├── applyUpdates()
+ └── addNewRecord()
+5. JSON Path Utility
+
+Handles nested fields.
+
+Example:
+
+address.street
+
+This utility splits path:
+
+address → street
+
+Structure:
+
+JsonPathUtil
+ └── setValueByPath()
+4️⃣ Project Structure
+
+Recommended Java project layout:
+
+json-update-system
+│
+├── data
+│   └── users.json
+│
+├── model
+│   └── UpdateRequest.java
+│
+├── service
+│   └── JsonUpdateService.java
+│
+├── util
+│   ├── JsonFileManager.java
+│   └── JsonPathUtil.java
+│
+└── Main.java
+5️⃣ Data Flow
+
+Step-by-step flow:
+
+1️⃣ Program receives update request
+
+ID = 2
+city = Hyderabad
+
+2️⃣ System reads JSON file
+
+users.json
+
+3️⃣ Search record with ID = 2
+
+4️⃣ If found → update fields
+
+5️⃣ If not found → create new object
+
+6️⃣ Save updated JSON file
+
+6️⃣ Example Execution Flow
+
+Input request:
+
+ID: 3
+name: Ravi
+city: Chennai
+
+System processing:
+
+Read JSON file
+     │
+Search ID = 3
+     │
+Not found
+     │
+Create new object
+     │
+Add to JSON array
+     │
+Save file
+7️⃣ Time Complexity
+
+For JSON array size N
+
+Searching record:
+
+O(N)
+
+Updating fields:
+
+O(K)
+
+Where K = number of fields
+
+Total:
+
+O(N + K)
+8️⃣ Future Improvements (Production Level)
+
+If this becomes a real system you can add:
+
+1️⃣ JSON Indexing
+
+Store ID index for faster search.
+
+HashMap<id, JsonNode>
+
+Search time becomes:
+
+O(1)
+2️⃣ Batch Updates
+
+Update multiple records at once.
+
+Example input:
+
+[
+ {id:2, city:Hyderabad},
+ {id:5, name:Ravi}
+]
+3️⃣ Change History
+
+Track updates:
+
+updates.log
+
+Example:
+
+ID 2 updated city Mumbai → Hyderabad
+4️⃣ Concurrency Support
+
+Handle multiple update requests safely.
+
+9️⃣ Real World Use Cases
+
+This system is useful when:
+
+No database available
+
+Configuration management
+
+Local caching systems
+
+Data migration scripts
+
+Testing environments
+
+
+
+
+✅ Problem statement
+
+✅ Main JSON file (big dataset)
+
+✅ Input update file
+
+✅ Expected behavior
+
+The next step is to implement the Java program that performs the updates.
+
+Here is the exact sequence of tasks you should do now.
+
+
+1️⃣ Create Project Structure
+
+Create folders like this:
+
+json-update-project
+│
+├── data
+│   ├── users.json
+│   └── updateRequest.json
+│
+├── src
+│   ├── model
+│   │    └── UpdateRequest.java
+│   │
+│   ├── service
+│   │    └── JsonUpdateService.java
+│   │
+│   ├── util
+│   │    ├── JsonFileManager.java
+│   │    └── JsonPathUtil.java
+│   │
+│   └── Main.java
+
+
+2️⃣ Add JSON Library
+
+Add dependency for Jackson Databind
+
+If using Maven:
+
+<dependency>
+ <groupId>com.fasterxml.jackson.core</groupId>
+ <artifactId>jackson-databind</artifactId>
+ <version>2.15.2</version>
+</dependency>
+
+
+3️⃣ Read the Main JSON File
+
+First task: load the JSON array
+
+Example logic:
+
+Read users.json
+Convert into JSON Array
+Store in memory
+
+
+4️⃣ Read the Update Request File
+
+Next step:
+
+Read updateRequest.json
+Loop through update requests
+
+Each request contains:
+
+id
+updates
+
+
+5️⃣ Find Record by ID
+
+For each request:
+
+Loop through users array
+Check if id matches
+
+If found:
+
+Update fields
+
+
+6️⃣ Update Fields
+
+Example update request:
+
+city = Hyderabad
+address.street = B3
+
+Logic:
+
+If simple field → update directly
+If nested field → split path
+
+Example:
+
+address.street
+
+Split into:
+
+address → street
+
+
+7️⃣ Add Record if ID Not Found
+
+If ID doesn't exist:
+
+Create new JSON object
+Add id
+Add update fields
+Append to JSON array
+
+8️⃣ Save Updated JSON
+
+After all updates:
+
+Write JSON array back to users.json
+
+9️⃣ Program Flow
+
+Your program flow should look like this:
+
+Start Program
+     │
+Read users.json
+     │
+Read updateRequest.json
+     │
+For each update request
+     │
+Find record by ID
+     │
+ ┌───────────────┬───────────────┐
+ │               │               │
+Found         Not Found
+ │               │
+Update fields   Create new record
+ │               │
+ └───────────────┴───────────────┘
+        │
+Write updated JSON file
+        │
+End Program
+
+
+🔟 Test Cases You Should Try
+
+Test your system with:
+
+Case 1
+
+Update existing user
+
+id = 3
+city = Pune
+Case 2
+
+Update nested field
+
+id = 5
+address.street = E3
+Case 3
+
+Add new record
+
+id = 20
+name = Rahul
+city = Delhi
+
+
+✅ Final Goal
+
+After running the program:
+
+Existing records are updated
+
+New records are added
+
+JSON file is saved

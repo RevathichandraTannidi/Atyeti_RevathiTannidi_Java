@@ -1,0 +1,18 @@
+[
+  {
+    "id": 3,
+    "city": "Pune",
+    "department": "AI Research"
+  },
+  {
+    "id": 5,
+    "age": 29
+  },
+  {
+    "id": 20,
+    "name": "New User",
+    "age": 22,
+    "city": "Goa",
+    "department": "Intern"
+  }
+]
