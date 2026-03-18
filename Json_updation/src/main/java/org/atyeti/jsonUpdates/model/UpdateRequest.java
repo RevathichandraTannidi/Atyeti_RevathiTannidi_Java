@@ -8,6 +8,9 @@ public class UpdateRequest {
     private Integer age;
     private String city;
     private String department;
+    private  Address address;
+
+
 
     public UpdateRequest() {}
 
@@ -35,4 +38,11 @@ public class UpdateRequest {
         return department;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }
