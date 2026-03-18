@@ -33,6 +33,8 @@ public class JsonUpdateService {
                     user.setCity(update.getCity());
                 }
 
+
+                //
                 if (update.getDepartment() != null) {
                     user.setDepartment(update.getDepartment());
                 }
