@@ -1,0 +1,67 @@
+[ {
+  "empId" : 101,
+  "name" : "ramu",
+  "designation" : "Senior Software Engineer",
+  "domain" : "Backend",
+  "level" : "L3"
+}, {
+  "empId" : 102,
+  "name" : "Bob",
+  "designation" : "Analyst",
+  "domain" : "Finance",
+  "level" : "L1"
+}, {
+  "empId" : 103,
+  "name" : "sendhil",
+  "designation" : "Data Scientist",
+  "domain" : "Machine Learning",
+  "level" : "L3"
+}, {
+  "empId" : 104,
+  "name" : "David",
+  "designation" : "DevOps Engineer",
+  "domain" : "Cloud",
+  "level" : "L2"
+}, {
+  "empId" : 105,
+  "name" : "Eva",
+  "designation" : "Product Manager",
+  "domain" : "Management",
+  "level" : "L4"
+}, {
+  "empId" : 106,
+  "name" : "sreedhar",
+  "designation" : "developer",
+  "domain" : "Testing",
+  "level" : "L2"
+}, {
+  "empId" : 107,
+  "name" : "Grace",
+  "designation" : "UI/UX Designer",
+  "domain" : "Design",
+  "level" : "L2"
+}, {
+  "empId" : 108,
+  "name" : "Henry",
+  "designation" : "Security Engineer",
+  "domain" : "Cybersecurity",
+  "level" : "L3"
+}, {
+  "empId" : 109,
+  "name" : "Ivy",
+  "designation" : "Business Analyst",
+  "domain" : "Finance",
+  "level" : "L2"
+}, {
+  "empId" : 110,
+  "name" : "Jack",
+  "designation" : "Software Engineer",
+  "domain" : "Frontend",
+  "level" : "L2"
+}, {
+  "empId" : 111,
+  "name" : "Chandra",
+  "designation" : "Intern",
+  "domain" : "AI",
+  "level" : "L0"
+} ]

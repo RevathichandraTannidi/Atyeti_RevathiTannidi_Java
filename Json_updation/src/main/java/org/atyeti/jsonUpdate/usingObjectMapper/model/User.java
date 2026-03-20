@@ -1,4 +1,4 @@
-package org.atyeti.jsonUpdates.model;
+package org.atyeti.jsonUpdate.usingObjectMapper.model;
 
 
 public class User {

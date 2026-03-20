@@ -1,8 +1,8 @@
-package org.atyeti.jsonUpdates.service;
+package org.atyeti.jsonUpdate.usingObjectMapper.service;
 
-import org.atyeti.jsonUpdates.model.Address;
-import org.atyeti.jsonUpdates.model.UpdateRequest;
-import org.atyeti.jsonUpdates.model.User;
+import org.atyeti.jsonUpdate.usingObjectMapper.model.Address;
+import org.atyeti.jsonUpdate.usingObjectMapper.model.UpdateRequest;
+import org.atyeti.jsonUpdate.usingObjectMapper.model.User;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

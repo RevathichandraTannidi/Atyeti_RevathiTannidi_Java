@@ -1,4 +1,4 @@
-package org.atyeti.jsonUpdates.util;
+package org.atyeti.jsonUpdate.usingObjectMapper.util;
 
 import java.io.File;
 

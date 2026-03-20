@@ -1,10 +1,10 @@
-package org.atyeti.jsonUpdates;
+package org.atyeti.jsonUpdate.usingObjectMapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.atyeti.jsonUpdates.model.UpdateRequest;
-import org.atyeti.jsonUpdates.model.User;
-import org.atyeti.jsonUpdates.service.JsonUpdateService;
-import org.atyeti.jsonUpdates.util.JsonFileReader;
+import org.atyeti.jsonUpdate.usingObjectMapper.model.UpdateRequest;
+import org.atyeti.jsonUpdate.usingObjectMapper.model.User;
+import org.atyeti.jsonUpdate.usingObjectMapper.service.JsonUpdateService;
+import org.atyeti.jsonUpdate.usingObjectMapper.util.JsonFileReader;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class Main {
 
   File userFile = JsonFileReader.getUsersFile();
 
-        User[] users = mp.readValue(userFile, User[].class);
+        User[] users = mp.readValue(userFile, User[].class); // Json -> java
 
         List<User> userList =new ArrayList<>(Arrays.asList(users));
 
@@ -31,7 +31,7 @@ public class Main {
 
         JsonUpdateService service= new JsonUpdateService();
         service.applyUpdates(userList,updateList);
-        mp.writerWithDefaultPrettyPrinter().writeValue(userFile, userList);
+        mp.writerWithDefaultPrettyPrinter().writeValue(userFile, userList); //java -> JSOn
         System.out.println("\n after update \n");
         for (User us:userList)
         {

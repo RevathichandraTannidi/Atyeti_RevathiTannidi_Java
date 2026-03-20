@@ -1,0 +1,26 @@
+[
+  {
+    "empId": 101,
+    "name": "ramu",
+    "designation": "Senior Software Engineer",
+    "level": "L3"
+  },
+  {
+    "empId": 103,
+    "name": "sendhil",
+    "domain": "Machine Learning"
+  },
+  {
+    "empId": 106,
+    "name": "sreedhar",
+    "designation": "developer",
+    "level": "L2"
+  },
+  {
+    "empId": 111,
+    "name": "Chandra",
+    "designation": "Intern",
+    "domain": "AI",
+    "level": "L0"
+  }
+]

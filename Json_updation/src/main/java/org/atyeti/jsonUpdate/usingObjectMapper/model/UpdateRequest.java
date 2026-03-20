@@ -1,4 +1,4 @@
-package org.atyeti.jsonUpdates.model;
+package org.atyeti.jsonUpdate.usingObjectMapper.model;
 
 
 public class UpdateRequest {
@@ -8,7 +8,7 @@ public class UpdateRequest {
     private Integer age;
     private String city;
     private String department;
-    private  Address address;
+    private Address address;
 
 
 
