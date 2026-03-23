@@ -35,6 +35,7 @@ public class StreamUpdateWithFile {
 
         JsonGenerator generator = factory.createGenerator(outputFile, JsonEncoding.UTF8);
 generator.setCodec(mapper);
+        generator.useDefaultPrettyPrinter();
         generator.writeStartArray();
 
         Set<Integer> processedIds = new HashSet<>();
@@ -61,6 +62,7 @@ generator.setCodec(mapper);
 
 
                 generator.writeObject(user);
+
             }
         }
 
