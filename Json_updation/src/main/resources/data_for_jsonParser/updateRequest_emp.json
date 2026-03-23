@@ -1,0 +1,22 @@
+[
+  {
+
+    "empId": 101,
+    "name": "chandra",
+    "designation": "Senior Software Engineer",
+    "level": "L3"
+  },
+  {
+
+    "empId": 103,
+    "name": "seetha ram",
+    "domain": "Machine Learning"
+  },
+  {
+    "empId": 105,
+    "name": "Eva sendria",
+    "designation": "Product Manager",
+    "domain": "Management",
+    "level": "L4"
+  }
+]

@@ -1,9 +1,9 @@
 [
   { "empId": 101, "name": "Revathi chandra" },
   { "empId": 102, "name": "Tannidi " },
-  { "empId": 102, "name": "Vamshi  " },
-  { "empId": 102, "name": "Nallavalli v " },
-  { "empId": 102, "name": "sowmya" },
-  { "empId": 102, "name": "someswari " }
+  { "empId": 103, "name": "Vamshi  " },
+  { "empId": 104, "name": "Nallavalli v " },
+  { "empId": 105, "name": "sowmya" },
+  { "empId": 106, "name": "someswari " }
 
 ]

@@ -1,0 +1,30 @@
+[
+  {
+    "empId": 101,
+    "name": "Alice",
+    "designation": "Software Engineer",
+    "domain": "Backend",
+    "level": "L2"
+  },
+  {
+    "empId": 102,
+    "name": "Bob",
+    "designation": "Analyst",
+    "domain": "Finance",
+    "level": "L1"
+  },
+  {
+    "empId": 103,
+    "name": "Charlie",
+    "designation": "Data Scientist",
+    "domain": "ML",
+    "level": "L3"
+  },
+  {
+    "empId": 104,
+    "name": "David",
+    "designation": "DevOps Engineer",
+    "domain": "Cloud",
+    "level": "L2"
+  }
+]
