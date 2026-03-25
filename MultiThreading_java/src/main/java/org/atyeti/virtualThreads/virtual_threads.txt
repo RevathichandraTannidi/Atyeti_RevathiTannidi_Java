@@ -1,0 +1,297 @@
+
+ A virtual thread a lightweight thread that is managed by the java virtual machine instead of operating system
+
+normal threads are platform threads
+lke created and managed by os heavy and slow to create limited in number
+
+virtual threads
+created and managed by the jvm and very light weight fast to create and can create millions of them.
+
+how the virtual threads works
+
+virtual thread == your task , contains its own stack
+platform thread(carrier) thread ==  real os thread , executes  virtual threads
+ scheduler == decide which threads runs , maps virtual threads ->  platform threads
+
+ life cycle of virtual thread
+ Step 1: Creation
+ Thread.startVirtualThread(task);
+
+ 👉 JVM creates:
+
+ VirtualThread object
+ Lightweight stack
+
+ NO OS thread is created here ❗
+
+ ▶️ Step 2: Scheduling
+
+ JVM scheduler:
+
+ Picks a virtual thread
+ Assigns it to a carrier thread
+ Virtual Thread → mounted on → Platform Thread
+
+ This is called:
+
+ 👉 Mounting
+ 🏃 Step 3: Execution
+
+ Now it runs like a normal thread:
+
+ System.out.println("Running...");
+
+ At this point:
+
+ It is using CPU via the platform thread
+
+
+
+3. What Happens When It Blocks?
+
+This is the most important part.
+
+Case: Blocking Operation
+String data = socket.read(); // blocking I/O
+🧨 Old Platform Thread Behavior
+OS thread gets blocked
+Cannot do anything else
+Waste of resources
+🚀 Virtual Thread Behavior
+
+When blocking happens:
+
+👉 JVM does UNMOUNT
+Virtual Thread → removed from Platform Thread
+Platform Thread → free to run others
+
+This is called:
+
+👉 Unmounting (Parking)
+Where does the virtual thread go?
+Its state (stack, variables) is saved in heap
+It waits until I/O completes
+
+🔁 Step 4: Resume
+
+When I/O is ready:
+
+JVM scheduler picks it again
+Assigns a platform thread
+Virtual Thread → mounted again → resumes execution
+
+
+full flow diagram
+--------------------------------------------------
+
+Create Virtual Thread
+        ↓
+Scheduler picks it
+        ↓
+Mounted on Platform Thread
+        ↓
+Runs code
+        ↓
+[Blocking call happens]
+        ↓
+Unmount (state saved)
+        ↓
+Platform thread reused
+        ↓
+I/O completes
+        ↓
+Remount on any platform thread
+        ↓
+Continue execution
+
+
+Pinning (Internal Limitation)
+
+Sometimes JVM cannot unmount the virtual thread.
+
+This is called 👉 Pinning
+Happens when:
+synchronized(lock) {
+    Thread.sleep(1000);
+}
+
+👉 JVM cannot safely pause here
+👉 So:
+
+Virtual Thread stays mounted ❌
+Platform Thread gets blocked ❌
+Why?
+
+Because:
+
+synchronized uses OS-level locking
+JVM cannot move execution safely
+Better alternative:
+ReentrantLock lock = new ReentrantLock();
+⚡ 6. Scheduler Details (Advanced Insight)
+Uses ForkJoinPool internally (default scheduler)
+Work-stealing algorithm:
+Idle threads steal tasks from busy threads
+
+👉 Efficient CPU usage
+
+🧵 7. Key Internal Concepts Summary
+Concept	Meaning
+Mount	Attach virtual thread to platform thread
+Unmount	Detach when blocking
+Carrier Thread	Platform thread running virtual thread
+Scheduler	JVM component assigning threads
+Stack Storage	Heap (not OS stack)
+Pinning	Prevents unmounting
+🔥 8. Why This Is Powerful
+
+Because:
+
+👉 Threads are no longer tied to OS threads
+
+So:
+
+Blocking is cheap
+Context switching is cheap
+Massive concurrency becomes possible
+
+
+
+
+
+
+
+
+
+
+Virtual threads are a feature introduced in Java 21 as part of Project Loom. They are lightweight threads managed by the JVM, designed to handle a large number of concurrent tasks efficiently. Unlike platform threads, which are managed by the operating system and consume more memory, virtual threads are lightweight and can be created in millions.
+
+Virtual threads use an M:N scheduling model where multiple virtual threads are mapped to a smaller number of platform threads. When a virtual thread performs a blocking operation, it is unmounted from the platform thread, allowing the platform thread to execute other tasks. Once the blocking operation completes, the virtual thread is resumed.
+
+The main advantages of virtual threads include high scalability, efficient resource usage, and simpler code compared to asynchronous programming. However, they are not suitable for CPU-intensive tasks and may face issues like pinning. Virtual threads are widely used in web applications, APIs, and microservices.
+
+🎯 Quick Revision Trick
+
+👉 Remember this line:
+
+"Virtual threads = lightweight + scalable + JVM-managed threads for I/O tasks"
+
+
+
+
+Ways to Create Virtual Threads in Java
+
+(Available in Java 21)
+
+✅ 1. Using Thread.startVirtualThread() (Simplest)
+Thread.startVirtualThread(() -> {
+    System.out.println("Hello Virtual Thread");
+});
+✔️ Use when:
+Simple tasks
+Quick testing
+✅ 2. Using Thread.ofVirtual().start()
+Thread thread = Thread.ofVirtual().start(() -> {
+    System.out.println("Running...");
+});
+✔️ Advantage:
+More control than simple method
+✅ 3. Using Thread.Builder (Advanced Control)
+Thread.Builder builder = Thread.ofVirtual().name("vt-", 1);
+
+builder.start(() -> {
+    System.out.println(Thread.currentThread().getName());
+});
+✔️ You can:
+Set thread name
+Configure properties
+✅ 4. Using Executor Service (Best Practice)
+import java.util.concurrent.*;
+
+try (ExecutorService executor =
+        Executors.newVirtualThreadPerTaskExecutor()) {
+
+    executor.submit(() -> {
+        System.out.println("Task running");
+    });
+}
+✔️ Use when:
+Real applications
+Multiple tasks
+🧠 Summary Table
+Method	Use Case
+startVirtualThread()	Simple & quick
+ofVirtual().start()	Moderate control
+Thread.Builder	Customization
+ExecutorService	Production / large apps
+🎯 Interview Point
+
+👉 If they ask:
+
+“Best way to create virtual threads?”
+
+✔ Answer:
+
+Use Executors.newVirtualThreadPerTaskExecutor() for scalable applications.
+
+
+
+Methods to Create Virtual Threads in Java
+
+(Available in Java 21)
+
+✅ 1. Thread.startVirtualThread(Runnable task)
+
+👉 Direct static method
+
+Thread.startVirtualThread(() -> {
+    System.out.println("Hello");
+});
+✅ 2. Thread.ofVirtual().start(Runnable task)
+
+👉 Uses builder internally
+
+Thread.ofVirtual().start(() -> {
+    System.out.println("Running");
+});
+✅ 3. Thread.ofVirtual().unstarted(Runnable task)
+
+👉 Create but don’t start immediately
+
+Thread t = Thread.ofVirtual().unstarted(() -> {
+    System.out.println("Task");
+});
+t.start();
+✅ 4. Thread.Builder (Advanced)
+
+👉 Full control over thread
+
+Thread.Builder builder = Thread.ofVirtual().name("vt-", 1);
+
+builder.start(() -> {
+    System.out.println("Named thread");
+});
+✅ 5. Executors.newVirtualThreadPerTaskExecutor()
+
+👉 Best for multiple tasks
+
+ExecutorService executor =
+    Executors.newVirtualThreadPerTaskExecutor();
+
+executor.submit(() -> {
+    System.out.println("Task running");
+});
+
+executor.shutdown();
+quick List (For Exams)
+
+ Just remember:
+
+Thread.startVirtualThread()
+Thread.ofVirtual().start()
+Thread.ofVirtual().unstarted()
+Thread.Builder
+Executors.newVirtualThreadPerTaskExecutor()
+ One-Line Answer
+
+Virtual threads can be created using Thread class methods and ExecutorService such as startVirtualThread(), ofVirtual(), and newVirtualThreadPerTaskExecutor(
