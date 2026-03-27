@@ -346,5 +346,8 @@
     {"timestamp":"2026-03-25T10:05:26","level":"WARN","service":"payment","message":"slow response"},
     {"timestamp":"2026-03-25T10:05:27","level":"ERROR","service":"auth","message":"token expired"},
     {"timestamp":"2026-03-25T10:05:28","level":"INFO","service":"orders","message":"updated"},
-    {"timestamp":"2026-03-25T10:05:29","level":"ERROR","service":"inventory","message":"db error"}
+    {"timestamp":"2026-03-25T10:05:29","level":"ERROR","service":"inventory","message":"db error"},
+  {"timestamp":"2026-03-25T10:05:30","level":"ERROR","service":"inventory","message":"db error"},
+  {"timestamp":"2026-03-25T10:05:31","level":"ERROR","service":"inventory","message":"db error"},
+  {"timestamp":"2026-03-25T10:05:29","level":"INFO","service":"inventory","message":"db error"}
   ]
