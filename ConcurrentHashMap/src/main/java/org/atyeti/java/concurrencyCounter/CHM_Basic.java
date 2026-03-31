@@ -11,7 +11,6 @@ public class CHM_Basic {
                 map.put(i, "Thread-" + Thread.currentThread().getId() + "-Value" + i);
             }
         };
-
         Thread t1 = new Thread(writer);
         Thread t2 = new Thread(writer);
 
