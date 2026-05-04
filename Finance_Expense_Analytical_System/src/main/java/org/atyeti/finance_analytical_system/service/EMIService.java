@@ -1,6 +1,5 @@
 package org.atyeti.finance_analytical_system.service;
 
-
 import org.atyeti.finance_analytical_system.model.EMICalculator;
 
 public class EMIService {
@@ -12,15 +11,17 @@ public class EMIService {
         double emi = calculator.calculateEMI(principal, rate, months);
         double total = calculator.totalPayment(emi, months);
         double interest = calculator.totalInterest(total, principal);
-
-        System.out.println("EMI: " + emi);
-        System.out.println("Total Payment: " + total);
-        System.out.println("Total Interest: " + interest);
+        System.out.println("\n===== Loan Analysis =====");
+        System.out.println("Monthly EMI       : ₹" + Math.round(emi));
+        System.out.println("Total Payment     : ₹" + Math.round(total));
+        System.out.println("Total Interest    : ₹" + Math.round(interest));
 
         if (emi <= income * 0.4) {
-            System.out.println("Loan is affordable");
+            System.out.println("Status        :  Affordable");
         } else {
-            System.out.println("Loan is NOT affordable");
+            System.out.println("Status        : Not Affordable");
         }
     }
+
+
 }

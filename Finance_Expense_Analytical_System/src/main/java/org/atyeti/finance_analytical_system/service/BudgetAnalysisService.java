@@ -25,4 +25,21 @@ public class BudgetAnalysisService {
         return map.entrySet().stream()
                 .max(Map.Entry.comparingByValue());
     }
+
+    public void printSummary(List<Transaction> list) {
+
+        double total = getTotalSpending(list);
+        Map<String, Double> category = getSpendingByCategory(list);
+
+        System.out.println("\n===== WealthPilot Spending Summary =====");
+        System.out.println("Total Spending: ₹" + total);
+
+        category.forEach((k, v) ->
+                System.out.println(k + " : ₹" + v)
+        );
+
+        getTopCategory(category).ifPresent(entry ->
+                System.out.println("Top Category: " + entry.getKey() + " ₹" + entry.getValue())
+        );
+    }
 }

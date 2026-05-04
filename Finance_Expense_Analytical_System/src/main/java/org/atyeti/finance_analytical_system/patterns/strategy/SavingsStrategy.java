@@ -5,5 +5,5 @@ import java.util.List;
 
 
 public interface SavingsStrategy {
-    void suggest(List<Transaction> transactions, double income);
+    String suggest(List<Transaction> transactions, double income);
 }

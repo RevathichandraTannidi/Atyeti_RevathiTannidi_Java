@@ -3,6 +3,7 @@ package org.atyeti.finance_analytical_system.model;
 import java.time.LocalDate;
 
 public class Transaction {
+
     private int id;
     private int userId;
     private double amount;

@@ -7,7 +7,7 @@ import java.util.List;
 public class ConservativeSaver implements SavingsStrategy {
 
     @Override
-    public void suggest(List<Transaction> transactions, double income) {
-        System.out.println("Start with saving 10%");
+    public String suggest(List<Transaction> transactions, double income) {
+        return "Recommended: Start with saving 10% and track spending habits.";
     }
 }

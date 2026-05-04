@@ -1,11 +1,8 @@
 package org.atyeti.finance_analytical_system.repository;
-
-
+import org.atyeti.finance_analytical_system.exception.FinancialException;
 import org.atyeti.finance_analytical_system.model.Transaction;
 import org.atyeti.finance_analytical_system.util.DatabaseManager;
-
 import java.sql.*;
-import java.sql.Date;
 import java.util.*;
 
 public class TransactionRepository {
@@ -19,10 +16,10 @@ public class TransactionRepository {
             ps.setInt(1, t.getUserId());
             ps.setDouble(2, t.getAmount());
             ps.setString(3, t.getCategory());
-            ps.setDate(4, Date.valueOf(t.getDate()));
+            ps.setDate(4, java.sql.Date.valueOf(t.getDate()));
             ps.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -43,8 +40,8 @@ public class TransactionRepository {
                 t.setDate(rs.getDate("date").toLocalDate());
                 list.add(t);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new FinancialException("Error while saving transaction", e);
         }
 
         return list;

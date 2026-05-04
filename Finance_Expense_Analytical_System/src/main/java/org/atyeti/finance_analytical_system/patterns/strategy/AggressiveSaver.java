@@ -6,7 +6,7 @@ import java.util.List;
 
 public class AggressiveSaver implements SavingsStrategy {
     @Override
-    public void suggest(List<Transaction> t, double income) {
-        System.out.println("Save at least 40% of income");
+    public String suggest(List<Transaction> t, double income) {
+        return "Recommended: Save at least 40% of income. Cut non-essential expenses.";
     }
 }
