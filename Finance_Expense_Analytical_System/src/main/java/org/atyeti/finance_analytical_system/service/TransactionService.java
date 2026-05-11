@@ -19,6 +19,7 @@ public class TransactionService {
         if (t.getAmount() <= 0) {
             throw new FinancialException("Transaction amount must be greater than zero");
         }
+        t.setCategory(t.getCategory().toLowerCase().trim());
 
         repo.addTransaction(t);
     }

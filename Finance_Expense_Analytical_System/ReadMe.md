@@ -1,13 +1,7 @@
 💼 WealthPilot — Personal Finance Analytics & Advisory Engine
 
 
-
-
-
-
-
-
-
+A Java-based personal finance system that tracks user transactions, analyzes spending patterns, provides smart savings advice, and evaluates loan affordability using real-world financial logic
 
 🚀 Overview
 

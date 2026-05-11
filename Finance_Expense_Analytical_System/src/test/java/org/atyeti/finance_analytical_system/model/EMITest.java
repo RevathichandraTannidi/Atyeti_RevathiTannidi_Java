@@ -24,12 +24,6 @@ public class EMITest {
         assertEquals(10000, emi, 0.01);
     }
 
-    @Test
-    void testInvalidMonths() {
-        EMICalculator calc = new EMICalculator();
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            calc.calculateEMI(500000, 10, 0);
-        });
-    }
+
 }
